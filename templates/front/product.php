@@ -1,37 +1,41 @@
 <?php
-
 require_once "../_header.php";
+
+require_once "./_nav.php";
 ?>
 
+    <div class="container py-5">
+        <div class="row">
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="#"><img src="../../assets/img/logo.svg" width="150" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <div class="col-sm-12 my-4">
+                <div class="card ">
+                    <div class="card-header">
+                        Nom de L'auteur
+                    </div>
+                    <div class="card-body">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
-                        <button class="btn btn-success my-2 my-sm-0" type="submit">Recherche</button>
-                    </form>
+                        <h3 class="card-title ">35 €</h3>
+
+                        <h5 class="card-title text-warning">Titre du produit</h5>
+                        <p class="card-text">Description ... text below as a natural lead-in to additional content.</p>
+                        <p class="card-text"> Editeur : <?php echo "12/11/2018"?></p>
+                        <p class="card-text"> Catégorie : <?php echo "DVD"?></p>
+                        <p class="card-text">Date d'ajout</p>
+                        <p class="card-text">Stock : <?php echo "50"?></p>
+                        <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                    </div>
+
                 </div>
-
             </div>
-        </nav>
-    </header>
+
+
+        </div>
+
+
+    </div>
+
+
+
 
 <?php
 
