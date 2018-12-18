@@ -1,6 +1,9 @@
 <?php
 
 require_once "../_header.php";
+
+require_once "./_nav.php";
+
 ?>
 
     <div class="container">

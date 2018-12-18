@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
     <div class="container">
         <a class="navbar-brand" href="#"><img src="../../assets/img/logo.svg" width="150" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -10,12 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Produits</a>
+                    <a class="nav-link" href="#">CD</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Commandes</a>
+                    <a class="nav-link" href="#">DVD</a>
                 </li>
             </ul>
+
+
+            <div class="useraccount mx-4 "><a href="#"><i class="fas fa-user"></i> <?php echo "Utilisateur"?></a></div>
+            <div class="useraccount mx-2 "><a href="#"> <button class="btn btn-sm btn-primary my-2 my-sm-0">Mes Commandes</button></a></div>
             <form class="form-inline my-2 my-lg-0">
 
                 <input class="form-control mr-sm-2" type="text" name="deconnexion" hidden >
