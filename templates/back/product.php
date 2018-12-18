@@ -61,7 +61,7 @@ require_once "./_nav.php";
         </form>
 
         <form action="">
-            <input type="text" name="deleteprod" id="" hidden>
+            <input type="text" name="deleteprod" id="" hidden >
             <button type="button" class="btn btn-outline-danger btn-block my-3">Supprimer ce produit</button>
         </form>
     </div>
