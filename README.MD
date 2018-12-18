@@ -7,3 +7,5 @@
 - MariaDB (10.1.31)
 ### FRONTEND
 - Bootstrap 4.1.3
+### SGBD
+![alt text](sgbd.png "sgbd")
