@@ -37,6 +37,11 @@ require_once "./_nav.php";
                 <textarea name="descprod" class="form-control" id="" cols="30" rows="1"></textarea>
             </div>
 
+            <div class="form-group">
+                <label for="imgprod">URL de la couverture</label>
+                <input  type="text" name="imgprod" class="form-control" id="" >
+            </div>
+
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="catprod">Catégorie</label>
