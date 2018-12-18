@@ -19,7 +19,7 @@
 
 
             <div class="useraccount mx-4 "><a href="#"><i class="fas fa-user"></i> <?php echo "Utilisateur"?></a></div>
-            <div class="useraccount mx-2 "><a href="#"> <button class="btn btn-sm btn-primary my-2 my-sm-0">Mes Commandes</button></a></div>
+            <div class="useraccount mx-2 "><a href="#"> <button class="btn btn-sm btn-primary my-2 my-sm-0"><i class="fas fa-shopping-cart"></i>  Panier</button></a></div>
             <form class="form-inline my-2 my-lg-0">
 
                 <input class="form-control mr-sm-2" type="text" name="deconnexion" hidden >
