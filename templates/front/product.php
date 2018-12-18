@@ -7,12 +7,16 @@ require_once "./_nav.php";
     <div class="container py-5">
         <div class="row">
 
-            <div class="col-sm-12 my-4">
+            <div class="col-sm-8 my-4">
                 <div class="card ">
                     <div class="card-header">
                         Nom de L'auteur
+
                     </div>
+
+
                     <div class="card-body">
+                        <div class="btn btn-sm btn-success my-3">Nouveauté</div>
 
                         <h3 class="card-title ">35 €</h3>
 
@@ -26,7 +30,17 @@ require_once "./_nav.php";
                     </div>
 
                 </div>
+
             </div>
+
+
+
+
+            <div class="col-sm-4 my-4">
+
+                <img class="card-img-top" src="https://media.senscritique.com/media/000016134438/source_big/La_Nuit_des_morts_vivants.jpg" width="350"  alt="Card image cap" style="object-fit: cover">
+            </div>
+
 
 
         </div>

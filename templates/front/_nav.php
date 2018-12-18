@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
-    <div class="container">
+
         <a class="navbar-brand" href="#"><img src="../../assets/img/logo.svg" width="150" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -25,7 +25,15 @@
                 <input class="form-control mr-sm-2" type="text" name="deconnexion" hidden >
                 <button class="btn btn-sm btn-danger my-2 my-sm-0" type="submit">Deconnexion</button>
             </form>
+
+            <form class="form-inline my-2 mx-2 my-lg-0">
+                <small class="mx-2 font-weight-bold">Connexion <br> ou <a href="#">s'enregistrer</a></small>
+
+                <input class="form-control form-control-sm mr-sm-2" type="text" name="connexionemail" placeholder="Email" >
+                <input class="form-control form-control-sm mr-sm-2" type="text" name="connexionpass" placeholder="Mot de passe" >
+                <button class="btn btn-sm btn-success my-2 my-sm-0" type="submit">Ok</button>
+            </form>
         </div>
 
-    </div>
+
 </nav>
