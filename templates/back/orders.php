@@ -1,38 +1,89 @@
 <?php
-
 require_once "../_header.php";
+
+require_once "./_nav.php";
 ?>
 
+    <div class="row">
+        <div class="container py-5">
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="#"><img src="../../assets/img/logo.svg" width="150" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
-                        <button class="btn btn-success my-2 my-sm-0" type="submit">Recherche</button>
-                    </form>
-                </div>
+            <p class="h2">Liste des Commandes</p>
 
-            </div>
-        </nav>
-    </header>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Commande id</th>
+                    <th scope="col">Article</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Nom du client</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Date de commande</th>
+                    <th scope="col">Statut commande</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><a href="#" style="">Mark</a></td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>15/06/2018</td>
+                    <td>
+                        <form action="">
+                            <select id="inputState" class="form-control-sm" name="statutprod">
+                                <option selected>En préparation</option>
+                                <option>Prête</option>
+                                <option>Envoyée</option>
+                            </select>
+                        <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                        </form>
+                    </td>
 
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@mdo</td>
+                    <td>15/06/2018</td>
+                    <td><form action="">
+                            <select id="inputState" class="form-control-sm" name="statutprod">
+                                <option selected>En préparation</option>
+                                <option>Prête</option>
+                                <option>Envoyée</option>
+                            </select>
+                            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                    <td>@mdo</td>
+                    <td>15/06/2018</td>
+                    <td><form action="">
+                            <select id="inputState" class="form-control-sm" name="statutprod">
+                                <option selected>En préparation</option>
+                                <option>Prête</option>
+                                <option>Envoyée</option>
+                            </select>
+                            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </div>
 <?php
 
 require_once "../_footer.php";
