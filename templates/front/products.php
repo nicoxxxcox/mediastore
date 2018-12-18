@@ -6,9 +6,16 @@ require_once "./_nav.php";
 
     <div class="container py-5">
 
+
+
         <div class="row">
+            <div class="col">
             <p class="h2 mb-5">Notre selection de <?php echo "DVD" ?></p>
+            </div>
         </div>
+
+
+
         <div class="row">
 
 
@@ -130,7 +137,20 @@ require_once "./_nav.php";
 
 
         </div>
+
+        <div class="row">
+
+
+
+            <?php
+            require_once "_search.php";
+
+            ?>
+        </div>
+
     </div>
+
+
 
 
 <?php
