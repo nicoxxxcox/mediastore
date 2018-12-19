@@ -1,7 +1,7 @@
 <?php
-require_once "../_header.php";
+//require_once "../_header.php";
 
-require_once "./_nav.php";
+require_once __DIR__."/_nav.php";
 ?>
 
     <div class="container py-5">
@@ -159,7 +159,3 @@ require_once "./_nav.php";
 
 
 
-<?php
-
-require_once "../_footer.php";
-?>

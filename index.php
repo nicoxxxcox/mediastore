@@ -1,7 +1,16 @@
 <?php
+// on débute la session
+session_start();
 
-require_once "templates/_header.php";
+require_once __DIR__."/templates/_header.php";
+
+if (isset($_SESSION["user"]) || isset($_SESSION["bookseller"])) {
+
+} else { require_once __DIR__."templates/front/products.php?user=".$username; }
 
 
 
-require_once  "templates/_footer.php";
+
+
+
+require_once __DIR__."/templates/_footer.php";
