@@ -13,11 +13,23 @@ require_once "./templates/front/_nav.php";
 
                     <?php
 
+
+
                     //
                     if(isset($_GET["product"])){
                         $res = $prod->getProduct($_GET["product"]);
                         $prod = $res->fetch();
                     } else { echo "Ce produits n'exite pas ! " ; }
+
+
+                    //CATEGORY
+                    if(  $prod['categorie_product'] == 0){
+                        $categorie = "Autre";
+                    } elseif ($prod['categorie_product'] == 1){
+                        $categorie = "CD";
+                    } elseif ($prod['categorie_product'] == 2){
+                        $categorie = "DVD";
+                    }
 
                     echo "
                     <div class=\"card-header\">
@@ -33,7 +45,7 @@ require_once "./templates/front/_nav.php";
                         <h5 class=\"card-title text-warning\">".$prod['name_product']."</h5>
                         <p class=\"card-text\">".$prod['description_product']."</p>
                         <p class=\"card-text\"> Editeur : ".$prod['editor_product']."</p>
-                        <p class=\"card-text\"> Catégorie : ".$prod['categorie_product']."</p>
+                        <p class=\"card-text\"> Catégorie : ".$categorie."</p>
                         <p class=\"card-text\">Ajouté le : ".$prod['dateadd']."</p>
                         <p class=\"card-text\">Stock : ".$prod['state_product']."</p>
                         <a href=\"#\" class=\"btn btn-primary\">Ajouter au panier</a>

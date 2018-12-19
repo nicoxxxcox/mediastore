@@ -13,40 +13,46 @@ require_once "./templates/front/_nav.php";
             ?>
         </div>
 
-
-
         <div class="row">
             <div class="col">
-            <p class="h2 my-5">Notre selection de <?php echo "DVD" ?></p>
+                <?php
+                $res1 = $prod->getProducts($cat);
+                $prods1 = $res1->fetch();
+
+
+
+
+                echo " <p class=\"h2 my-5\">Notre selection de ".$categorie."</p>" ;
+                ?>
+
             </div>
         </div>
 
-
-
         <div class="row">
 
-           <?php
+        <?php
 
-           //Catégorie par defaut est DVD
-           if(isset($_GET["categorie"])){
+        //Catégorie par defaut est DVD
+        if(isset($_GET["categorie"])){
 
-           } else { $cat = 2 ;}
-
-
-
-           // boucle d'affichage des produits
-            $res = $prod->getProducts($cat);
-           while ($prods = $res->fetch(PDO::FETCH_ASSOC)) {
-               //si l'image n'est pas définie
-               if(!isset($prods["url_product"])){
-                   $prods["url_product"] = "https://via.placeholder.com/300";
-               }
-
-               //si le produit est une nouveauté
+        } else { $cat = 2 ;}
 
 
 
-               echo " <div class=\"col-sm-3 my-4\">
+        // boucle d'affichage des produits
+        $res = $prod->getProducts($cat);
+        while ($prods = $res->fetch(PDO::FETCH_ASSOC)) {
+            //si l'image n'est pas définie
+            if(!isset($prods["url_product"])){
+                $prods["url_product"] = "https://via.placeholder.com/300";
+            }
+
+            //si le produit est une nouveauté
+
+
+
+            echo "
+                <div class=\"col-sm-3 my-4\">
                 <div class=\"card text-center\">
                     <div class=\"card-header\">
                        ".$prods["author_product"]."

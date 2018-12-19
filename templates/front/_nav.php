@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
 
-        <a class="navbar-brand" href="#"><img src="../../assets/img/logo.svg" width="150" alt=""></a>
+        <a class="navbar-brand" href="/"><img src="../../assets/img/logo.svg" width="150" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -10,10 +10,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">CD</a>
+                    <a class="nav-link" href="?categorie=1">CD</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">DVD</a>
+                    <a class="nav-link" href="?categorie=2">DVD</a>
                 </li>
             </ul>
 

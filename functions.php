@@ -10,6 +10,16 @@ database::pdo();
 $prod = new products(database::$bdd);
 
 //CATEGORY
+$categorie = NULL;
+if(isset($_GET['categorie'])){
+    if(  $_GET['categorie'] == 0){
+        $categorie = "Autre";
+    } elseif ($_GET['categorie'] == 1){
+        $categorie = "CD";
+    } elseif ($_GET['categorie'] == 2){
+        $categorie = "DVD";
+    }
+}
 
 
 
