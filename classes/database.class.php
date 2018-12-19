@@ -8,6 +8,7 @@ class database
      */
     private $_bdd;
     static public $bdd;
+
     static public function pdo()
     {
         try {
