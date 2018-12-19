@@ -16,13 +16,17 @@ require_once "./templates/front/_nav.php";
         <div class="row">
             <div class="col">
                 <?php
-                $res1 = $prod->getProducts($cat);
-                $prods1 = $res1->fetch();
+
+
+
+
 
 
 
 
                 echo " <p class=\"h2 my-5\">Notre selection de ".$categorie."</p>" ;
+
+
                 ?>
 
             </div>

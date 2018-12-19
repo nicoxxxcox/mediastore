@@ -1,4 +1,6 @@
 <?php
+
+//
 if(isset($_SESSION['user'])){
 $nav = "<div class=\"useraccount mx-4 \"><a href=\"#\"><i class=\"fas fa-user\"></i> ".$_SESSION['user']."</a></div>
             <div class=\"useraccount mx-2 \"><a href=\"#\"> <button class=\"btn btn-sm btn-primary my-2 my-sm-0\"><i class=\"fas fa-shopping-cart\"></i>  Panier</button></a></div>
@@ -9,8 +11,8 @@ $nav = "<div class=\"useraccount mx-4 \"><a href=\"#\"><i class=\"fas fa-user\">
             </form>";
 }
 elseif (!isset($_SESSION['user'])){
-    $nav = "<form class=\"form-inline my-2 mx-2 my-lg-0\">
-                <small class=\"mx-2 font-weight-bold\">Connexion <br> ou <a href=\"#\">s'enregistrer</a></small>
+    $nav = "<form class=\"form-inline my-2 mx-2 my-lg-0\" method='POST' action='functions.php'>
+                <small class=\"mx-2 font-weight-bold\">Connexion <br> ou <a href=\"?subscribe=2\">s'enregistrer</a></small>
 
                 <input class=\"form-control form-control-sm mr-sm-2\" type=\"text\" name=\"connexionemail\" placeholder=\"Email\" >
                 <input class=\"form-control form-control-sm mr-sm-2\" type=\"text\" name=\"connexionpass\" placeholder=\"Mot de passe\" >
@@ -33,10 +35,10 @@ elseif (!isset($_SESSION['user'])){
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="?categorie=1">CD</a>
+                    <a class="nav-link" href="?products&categorie=1">CD</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?categorie=2">DVD</a>
+                    <a class="nav-link" href="?products&categorie=2">DVD</a>
                 </li>
             </ul>
             <?php
