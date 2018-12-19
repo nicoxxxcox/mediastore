@@ -2,6 +2,8 @@
 // on débute la session
 session_start();
 
+$_SESSION['nico'] = "Nico";
+
 require_once __DIR__."/templates/_header.php";
 
 // on appele le modèle
