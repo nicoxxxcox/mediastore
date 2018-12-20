@@ -2,7 +2,6 @@
 // on débute la session
 session_start();
 
-$_SESSION['nico'] = "Nico";
 
 require_once __DIR__."/templates/_header.php";
 
@@ -12,18 +11,23 @@ require_once "./functions.php";
 
 
 
+
+
 if (isset($_GET["product"])) {
-require_once __DIR__."/templates/front/product.php";
-
+require __DIR__."/templates/front/product.php";
 }
-
-
-
-
-
-if (isset($_GET["products"])) {
-    require_once __DIR__."/templates/front/products.php";
+elseif (isset($_GET["products"])){
+    require __DIR__."/templates/front/products.php";
 }
+elseif (isset($_GET["home"])){
+    require __DIR__."/templates/front/products.php";
+}
+elseif (isset($_GET["subscribe"])){
+    require __DIR__."/templates/front/subscribe.php";
+}
+else { require __DIR__."/templates/front/products.php"; }
+
+
 
 
 

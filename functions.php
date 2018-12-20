@@ -11,7 +11,7 @@ $prod = new products(database::$bdd);
 $usr = new users(database::$bdd);
 
 //CATEGORY
-$categorie = NULL;
+$categorie = "DVD";
 if (isset($_GET['categorie'])) {
     if ($_GET['categorie'] == 0) {
         $categorie = "Autre";
@@ -49,8 +49,10 @@ if (isset($_GET["product"])) {
 //VERIFYUSER
 
 if(isset($_POST['connexionemail']) &&  isset($_POST['connexionpass'])){
+
+
     $infosconnect = $_POST;
-    $usr->getConnect($infosconnect);
+    $usr->getConnexion($infosconnect);
 
 
 }

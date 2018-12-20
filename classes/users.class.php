@@ -36,7 +36,8 @@ class users
         $req->bindValue(':email', $userinfos['emailsubs'], PDO::PARAM_STR);
         $req->bindValue(':adress', $userinfos['adresssubs'], PDO::PARAM_STR);
         $req->bindValue(':postal', $userinfos['postalsubs'], PDO::PARAM_STR);
-        $req->bindValue(':pass', password_hash($userinfos['passsubs'], PASSWORD_BCRYPT), PDO::PARAM_STR);
+
+        $req->bindValue(':pass', $userinfos['passsubs'], PDO::PARAM_STR);
         $req->bindValue(':firstname', $userinfos['firstnamesubs'], PDO::PARAM_STR);
         $req->bindValue(':lastname', $userinfos['lastnamesubs'], PDO::PARAM_STR);
 
@@ -60,6 +61,40 @@ class users
 
     }
 
+    public function getConnexion($infosconnect)
+    {
+
+        $verif = $this->_db->prepare('SELECT email_user , pass_user FROM users WHERE email_user=:email');
+        $verif->bindValue(':email', $infosconnect['connexionemail'], PDO::PARAM_STR);
+
+        $verif->execute();
+
+
+        while ($check = $verif->fetch(PDO::FETCH_ASSOC) ){
+
+
+            if(( $check['email_user'] ==  $infosconnect['connexionemail']) && ($check['pass_user'] == $infosconnect['connexionpass'] )){
+                header("location:/index.php?products&categorie=2&user=1");
+            } else { header("location:/index.php?products&categorie=2&user=0"); }
+
+
+
+
+            //echo $check['pass_user'];
+            //echo "<br>";
+            //echo $infosconnect['connexionpass'];
+
+            //var_dump(password_verify( $infosconnect['connexionpass'] , $check['pass_user'] ));
+
+        }
+
+
+
+
+
+
+
+    }
 
     public function getConnect($infosconnect)
     {
@@ -70,6 +105,8 @@ class users
 
 
         $count = $verif->fetchColumn();
+
+        var_dump($count);
 
         if (empty($count)) {
             $_SESSION['user'] = password_hash($infosconnect['connexionpass'] , PASSWORD_BCRYPT);
@@ -82,6 +119,8 @@ class users
 
             session_destroy();
         }
+
+
 
     }
 
