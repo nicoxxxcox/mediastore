@@ -6,6 +6,10 @@ class users
 
     private $_db;
 
+    public $_id_user;
+    public $_firstname_user;
+
+
 
     /**
      * todo constructor.
@@ -61,68 +65,44 @@ class users
 
     }
 
+    public function getUser($id , $name){
+
+
+        $infos = $this->_db->prepare('SELECT * FROM users WHERE id_user=:id and firstname_user=:name');
+        $infos->bindValue(':id', $id, PDO::PARAM_INT);
+        $infos->bindValue(':name', $name, PDO::PARAM_STR);
+
+        $infos->execute();
+
+        while($infosall = $infos->fetch(PDO::FETCH_ASSOC)){
+            return $infosall;
+        }
+    }
+
     public function getConnexion($infosconnect)
     {
 
-        $verif = $this->_db->prepare('SELECT email_user , pass_user FROM users WHERE email_user=:email');
+        $verif = $this->_db->prepare('SELECT id_user , email_user , pass_user , firstname_user  FROM users WHERE email_user=:email');
         $verif->bindValue(':email', $infosconnect['connexionemail'], PDO::PARAM_STR);
 
         $verif->execute();
 
 
         while ($check = $verif->fetch(PDO::FETCH_ASSOC) ){
-
-
             if(( $check['email_user'] ==  $infosconnect['connexionemail']) && ($check['pass_user'] == $infosconnect['connexionpass'] )){
-                header("location:/index.php?products&categorie=2&user=1");
-            } else { header("location:/index.php?products&categorie=2&user=0"); }
+
+                $this->_firstname_user = $check['firstname_user'];
+                $this->_id_user = $check['id_user'];
+
+                return TRUE ;
 
 
 
 
-            //echo $check['pass_user'];
-            //echo "<br>";
-            //echo $infosconnect['connexionpass'];
-
-            //var_dump(password_verify( $infosconnect['connexionpass'] , $check['pass_user'] ));
+            } else { return FALSE;  }
 
         }
 
-
-
-
-
-
-
     }
-
-    public function getConnect($infosconnect)
-    {
-        $verif = $this->_db->prepare('SELECT email_user , pass_user FROM users WHERE email_user=:email and pass_user=:pass');
-        $verif->bindValue(':email', $infosconnect['connexionemail'], PDO::PARAM_STR);
-        $verif->bindValue(':pass', password_hash($infosconnect['connexionpass'] , PASSWORD_BCRYPT), PDO::PARAM_STR);
-        $verif->execute();
-
-
-        $count = $verif->fetchColumn();
-
-        var_dump($count);
-
-        if (empty($count)) {
-            $_SESSION['user'] = password_hash($infosconnect['connexionpass'] , PASSWORD_BCRYPT);
-            header("location:/index.php?products&categorie=2");
-            var_dump($_SESSION['user']);
-
-
-
-        } elseif (!empty($count)) {  // l'enregistrement s'est mail passé un email exite déja
-
-            session_destroy();
-        }
-
-
-
-    }
-
 
 }

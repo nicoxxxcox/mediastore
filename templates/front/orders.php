@@ -1,10 +1,11 @@
 <?php
-require_once "../_header.php";
 
-require_once "./_nav.php";
+
+require_once "./templates/front/_nav.php";
+
 ?>
 
-    <div class="row">
+<div class="row">
         <div class="container py-5">
 
 
@@ -17,8 +18,11 @@ require_once "./_nav.php";
                     <th scope="col">Article</th>
                     <th scope="col">Auteur</th>
                     <th scope="col">Catégorie</th>
+                    <th>prix</th>
                     <th scope="col">Stock</th>
                     <th scope="col">Livraison prévue</th>
+                    <th>Quantité</th>
+                    <th>TOTAL</th>
 
                 </tr>
                 </thead>
@@ -27,9 +31,16 @@ require_once "./_nav.php";
                     <th scope="row">1</th>
                     <td><a href="#" style="">Mark</a></td>
                     <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+                    <td>CD</td>
+                    <td>25 €</td>
+                    <td>150</td>
                     <td>15/06/2018</td>
+                    <td><form action="">
+                            <input type="number" name="quantite" @ id="">
+                            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                        </form></td>
+                    <td>200 €</td>
+
 
 
                 </tr>
@@ -37,18 +48,30 @@ require_once "./_nav.php";
                     <th scope="row">2</th>
                     <td>Jacob</td>
                     <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>@mdo</td>
+                    <td>DVD</td>
+                    <td>25 €</td>
+                    <td>20</td>
                     <td>15/06/2018</td>
+                    <td><form action="">
+                            <input type="number" name="quantite" @ id="">
+                            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                        </form></td>
+                    <td>450 €</td>
 
                 </tr>
                 <tr>
                     <th scope="row">3</th>
                     <td>Larry</td>
                     <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>@mdo</td>
+                    <td>CD</td>
+                    <td>25 €</td>
+                    <td>50</td>
                     <td>15/06/2018</td>
+                    <td><form action="">
+                            <input type="number" name="quantite" @ id="">
+                            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
+                        </form></td>
+                    <td>150 €</td>
 
                 </tr>
                 </tbody>
@@ -133,7 +156,3 @@ require_once "./_nav.php";
         </div>
 
     </div>
-<?php
-
-require_once "../_footer.php";
-?>

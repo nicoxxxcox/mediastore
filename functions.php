@@ -49,13 +49,32 @@ if (isset($_GET["product"])) {
 //VERIFYUSER
 
 if(isset($_POST['connexionemail']) &&  isset($_POST['connexionpass'])){
-
-
     $infosconnect = $_POST;
     $usr->getConnexion($infosconnect);
 
 
+    if( ($usr->getConnexion($infosconnect)) === TRUE){
+
+        $_SESSION['user'] = $usr->_id_user;
+        $_SESSION['name'] = $usr->_firstname_user;
+
+        header("location:/index.php?products&categorie=2&user=". $_SESSION['user']."?name=".$_SESSION['name']) ;
+    }
+    else { header("location:/index.php?products&categorie=2&user=0"); }
 }
+
+//AFFICHE PROFILE
+if(isset($_GET['page']) &&  $_GET['page'] == "profil") {
+    $infosall = $usr->getUser($usr->_id_user , $usr->_firstname_user);
+}
+
+
+
+
+
+
+
+
 
 
 

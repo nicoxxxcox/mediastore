@@ -63,6 +63,7 @@ require_once "./templates/front/_nav.php";
                     </div>
                     <img class=\"card-img-top\" src='".$prods["url_product"]."' width=\"253\" height=\"151\" alt=\"Card image cap\" style=\"object-fit: cover\">
                     <div class=\"card-body\">
+                    <h5 class=\"card-title \">".$prods["price_product"]." €</h5>
                         <h5 class=\"card-title text-warning\">".$prods["name_product"]."</h5>
 
                         <a href=\"?product=".$prods["id_product"]."\" class=\"btn btn-primary\">Voir produit</a>
