@@ -36,33 +36,23 @@ elseif (isset($_GET["page"]) && $_GET['page'] == "payment" ){
 elseif (isset($_GET["page"]) && $_GET['page'] == "search" ){
     require __DIR__."/templates/front/search.php";
 }
-else { require __DIR__."/templates/front/products.php"; }
-
-
-
-//VERIFYUSER
-if( isset($_POST['connexionemail']) &&  isset($_POST['connexionpass'])){
-    $infosconnect = $_POST;
-    $usr->getConnexion($infosconnect);
-
-
-    if( ($usr->getConnexion($infosconnect)) === TRUE){
-
-        $infosall = $usr->getUser($_POST['connexionemail'] , $_POST['connexionpass']);
-
-        $_SESSION['name'] = $infosall['firstname_user'] ;
-        $_SESSION['user'] = $infosall['id_user'] ;
-
-        $usr->_id_user = $_SESSION['user'];
-        $usr->_firstname_user = $_SESSION['name'] ;
-
-
-
-
-        header("location:/?page=products&categorie=2&user=". $_SESSION['user']."?name=".$_SESSION['name']) ;
-    }
-    else { header("location:/?page=products&categorie=2&user=0"); }
+elseif (isset($_GET["page"]) && $_GET['page'] == "login" ){
+    require __DIR__."/templates/back/login.php";
 }
+elseif (isset($_GET["page"]) && $_GET['page'] == "adproducts" ){
+    require __DIR__."/templates/back/products.php";
+}
+elseif (isset($_GET["page"]) && $_GET['page'] == "adproduct" ){
+    require __DIR__."/templates/back/product.php";
+}
+elseif (isset($_GET["page"]) && $_GET['page'] == "adorders" ){
+    require __DIR__."/templates/back/orders.php";
+}
+else { require __DIR__."/templates/front/home.php"; }
+
+
+
+
 
 
 

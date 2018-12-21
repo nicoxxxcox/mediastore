@@ -1,11 +1,9 @@
 <?php
-require_once "../_header.php";
-
-require_once "./_nav.php";
+require_once "./templates/back/_nav.php";
 ?>
 
 <div class="row">
-    <div class="container py-5">
+    <div class="container py-5 my-5">
 
         <p class="h3 text-right">bonjour <?php echo "Name" ?></p>
         <p class="h2">Liste des Produits</p>
@@ -26,8 +24,8 @@ require_once "./_nav.php";
                 <th scope="row">1</th>
                 <td><a href="#" style="">Mark</a></td>
                 <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
+                <td>200</td>
+                <td>12/08/2018</td>
                 <td><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>
 
             </tr>
@@ -35,16 +33,16 @@ require_once "./_nav.php";
                 <th scope="row">2</th>
                 <td>Jacob</td>
                 <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
+                <td>20</td>
+                <td>15/09/2018</td>
                 <td><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>
             </tr>
             <tr>
                 <th scope="row">3</th>
                 <td>Larry</td>
                 <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@mdo</td>
+                <td>450</td>
+                <td>09/08/2018</td>
                 <td><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></td>
             </tr>
             </tbody>
@@ -55,6 +53,3 @@ require_once "./_nav.php";
     </div>
 
 </div>
-<?php
-require_once "../_footer.php";
-?>

@@ -1,6 +1,6 @@
 
 <footer class="bg-dark">
-    <div class="container py-5">
+    <div class="container py-5 " style="margin-top: 6rem;">
 
         <p class="text-light text-center">Fait à Lyon avec  💪 par Nicolas GRISSI</p>
     </div>

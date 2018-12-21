@@ -4,7 +4,7 @@
 require_once "./templates/front/_nav.php";
 
 
-echo "<div class=\"container\">
+echo "<div class=\"container py-5\">
 
         <div class=\"row\">
             <div class=\"col-sm-6 mx-auto mt-5\">
@@ -13,6 +13,7 @@ echo "<div class=\"container\">
                     <img class=\"mb-4 mx-auto d-block\" src=\"../../assets/img/logo.svg\" alt=\"\" width=\"200\" height=\"\">
                     
                     <h1 class=\"h3 mb-3 font-weight-normal\">Mes informations</h1>
+                    
                     
                     <label for=\"inputEmail\" class=\"\">Adresse email</label>
                     <input type=\"email\" name=\"emailmod\" id=\"inputEmail\" class=\"form-control mb-2\" placeholder=\"Adresse email\"

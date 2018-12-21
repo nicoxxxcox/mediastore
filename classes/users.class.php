@@ -4,7 +4,7 @@ class users
 {
 
 
-    private $_db;
+    public $_db;
 
     public $_id_user;
     public $_firstname_user;

@@ -1,8 +1,8 @@
 <?php
 
-require_once "../_header.php";
 
-require_once "./_nav.php";
+
+require_once "./templates/back/_nav.php";
 
 ?>
 
@@ -37,7 +37,3 @@ require_once "./_nav.php";
 
     </div>
 
-<?php
-
-require_once "../_footer.php";
-?>

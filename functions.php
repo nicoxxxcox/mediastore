@@ -54,7 +54,6 @@ if (isset($_GET["product"])) {
 if(isset($_GET['page']) &&  $_GET['page'] == "profil") {
     if(isset($_GET['name'])){
         $infosall = $usr->getUser( $_GET['name'] ,$_GET['user'] );
-
     }
 }
 
@@ -68,6 +67,41 @@ if(isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['fi
     header("location:index.php?page=profil&name=".$_POST['firstnamemod']."&user=".$_POST['idmod']);
 }
 else{ $messagemod = "" ;}
+
+
+
+//VERIFYUSER
+if( isset($_POST['connexionemail']) &&  isset($_POST['connexionpass'])){
+
+    $infosconnect = $_POST;
+
+    $verif = $usr->_db->prepare('SELECT id_user , email_user , pass_user , firstname_user  FROM users WHERE email_user=:email');
+    $verif->bindValue(':email', $infosconnect['connexionemail'], PDO::PARAM_STR);
+
+    $verif->execute();
+
+
+
+    while ($check = $verif->fetch(PDO::FETCH_ASSOC) ){
+
+        if(( $check['email_user'] ==  $infosconnect['connexionemail']) && ($check['pass_user'] == $infosconnect['connexionpass'] )){
+
+            $_SESSION['user'] = $check['id_user'];
+            $_SESSION['name'] = $check['firstname_user'];
+
+            $usr->_firstname_user = $check['firstname_user'];
+            $usr->_id_user = $check['id_user'];
+
+            header("location:/index.php?page=products&categorie=2&user=". $_SESSION['user']."?name=".$_SESSION['name']) ;
+
+
+        } else { session_unset(); header("location:index.php?page=products&categorie=2&user=0");  }
+    }
+}
+
+
+
+
 
 
 

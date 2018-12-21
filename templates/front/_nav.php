@@ -2,6 +2,7 @@
 //
 
 
+
 if( !empty($_SESSION['user']) &&  !empty($_SESSION['name'])){
     $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profil\"><i class=\"fas fa-user\"></i> ".$_SESSION['name']."</a></div>
             <div class=\"useraccount mx-2 \"><a href=\"index.php?page=panier\"> <button class=\"btn btn-sm btn-primary my-2 my-sm-0\"><i class=\"fas fa-shopping-cart\"></i>  Panier</button></a></div>
@@ -11,7 +12,7 @@ if( !empty($_SESSION['user']) &&  !empty($_SESSION['name'])){
             </form>";
 }
 else{
-    $nav = "<form class=\"form-inline my-2 mx-2 my-lg-0\" method='POST' action='index.php'>
+    $nav = "<form class=\"form-inline my-2 mx-2 my-lg-0\" method='POST' action='functions.php'>
                 <small class=\"mx-2 font-weight-bold\">Connexion <br> ou <a href=\"?page=subscribe&reg=2\">s'enregistrer</a></small>
 
                 <input class=\"form-control form-control-sm mr-sm-2\" type=\"text\" name=\"connexionemail\" placeholder=\"Email\" required >
@@ -37,10 +38,13 @@ else{
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="?page=products&categorie=1">CD</a>
+                    <a class="nav-link" href="index.php?page=home"><i class="fas fa-home"></i> Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?page=products&categorie=2">DVD</a>
+                    <a class="nav-link" href="index.php?page=products&categorie=1">CD</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?page=products&categorie=2">DVD</a>
                 </li>
             </ul>
             <?php
