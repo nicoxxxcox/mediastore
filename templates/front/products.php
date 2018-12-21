@@ -10,8 +10,12 @@ require_once "./templates/front/_nav.php";
         <div class="row">
             <?php
             require_once "_search.php";
+
+            echo $usr->_firstname_user;
             ?>
         </div>
+
+
 
         <div class="row">
             <div class="col">
@@ -66,13 +70,16 @@ require_once "./templates/front/_nav.php";
                     <h5 class=\"card-title \">".$prods["price_product"]." €</h5>
                         <h5 class=\"card-title text-warning\">".$prods["name_product"]."</h5>
 
-                        <a href=\"?product=".$prods["id_product"]."\" class=\"btn btn-primary\">Voir produit</a>
+                        <a href=\"?page=product&product=".$prods["id_product"]."&categorie=".$prods["categorie_product"]."\" class=\"btn btn-primary\">Voir produit</a>
                     </div>
                     <div class=\"card-footer text-muted\">
                         <div class=\"btn btn-sm btn-light \">Ajouté le ".$prods["dateadd"]."</div>
                     </div>
                 </div>
-            </div>";
+            </div>
+            
+            
+            ";
            }
 
             ?>

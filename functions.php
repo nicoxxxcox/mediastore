@@ -24,49 +24,44 @@ if (isset($_GET['categorie'])) {
 
 
 //ALLPRODUCTS FRONT
-
 if (isset($_GET["categorie"])) {
-
     $cat = $_GET["categorie"];
     $prod->getProducts($cat);
 }
 
 //PRODUCT FRONT
 if (isset($_GET["product"])) {
-
     $product = $_GET["product"];
     $prod->getProduct($product);
 }
 
 
 //SUBSCRIBE NEW USER
-
     if(isset($_POST['emailsubs']) &&  isset($_POST['lastnamesubs']) &&  isset($_POST['firstnamesubs']) &&  isset($_POST['postalsubs']) &&  isset($_POST['passsubs']) &&  isset($_POST['adresssubs'])){
     $userinfos = $_POST;
     $usr->setNewUser($userinfos);
 }
 
-//VERIFYUSER
 
-if(isset($_POST['connexionemail']) &&  isset($_POST['connexionpass'])){
-    $infosconnect = $_POST;
-    $usr->getConnexion($infosconnect);
-
-
-    if( ($usr->getConnexion($infosconnect)) === TRUE){
-
-        $_SESSION['user'] = $usr->_id_user;
-        $_SESSION['name'] = $usr->_firstname_user;
-
-        header("location:/index.php?products&categorie=2&user=". $_SESSION['user']."?name=".$_SESSION['name']) ;
-    }
-    else { header("location:/index.php?products&categorie=2&user=0"); }
-}
 
 //AFFICHE PROFILE
 if(isset($_GET['page']) &&  $_GET['page'] == "profil") {
-    $infosall = $usr->getUser($usr->_id_user , $usr->_firstname_user);
+    if(isset($_GET['name'])){
+        $infosall = $usr->getUser( $_GET['name'] ,$_GET['user'] );
+
+    }
 }
+
+//MOD PROFILE
+if(isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])){
+    $usr->setUser($_POST);
+
+    $messagemod = "<div class=\"alert alert-primary m-2\" role=\"alert\">
+                        Votre profil à bien été modifié !
+                    </div>";
+    header("location:index.php?page=profil&name=".$_POST['firstnamemod']."&user=".$_POST['idmod']);
+}
+else{ $messagemod = "" ;}
 
 
 

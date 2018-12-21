@@ -41,12 +41,12 @@ require_once "./templates/front/_nav.php";
 
                     // affichage du message
                     $message = NULL;
-                    if($_GET['subscribe'] == 1){
+                    if($_GET['reg'] == 1){
                         $message =   "<div class=\"alert alert-primary m-2\" role=\"alert\">
             Vous êtes bien engistré, bienvenue
                     </div>";
 
-                    } elseif ($_GET['subscribe'] == 0){
+                    } elseif ($_GET['reg'] == 0){
                         $message =   "<div class=\"alert alert-danger m-2\" role=\"alert\">
             Cet email est déjà enregistré
                     </div>";

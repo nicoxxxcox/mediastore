@@ -56,27 +56,37 @@ class users
         if (empty($count)) {
             $req->execute();
             // l'enregistrement s'est bien passé
-            header("location:/?subscribe=1");
+            header("location:/?page=subscribe&reg=1");
 
 
         } elseif (!empty($count)) {  // l'enregistrement s'est mail passé un email exite déja
-            header("location:/?subscribe=0");
+            header("location:/?page=subscribe&reg=0");
         }
 
     }
 
-    public function getUser($id , $name){
-
-
+    public function getUser($name , $id){
         $infos = $this->_db->prepare('SELECT * FROM users WHERE id_user=:id and firstname_user=:name');
-        $infos->bindValue(':id', $id, PDO::PARAM_INT);
+        $infos->bindValue(':id', $id, PDO::PARAM_STR);
         $infos->bindValue(':name', $name, PDO::PARAM_STR);
-
         $infos->execute();
-
         while($infosall = $infos->fetch(PDO::FETCH_ASSOC)){
             return $infosall;
         }
+    }
+
+    public function setUser($form){
+        $mod = $this->_db->prepare('UPDATE users SET  email_user = :email , adress_user = :adress , postal_user = :postal , pass_user = :pass, firstname_user = :firstname , lastname_user = :lastname ');
+        $mod->bindValue(':email', $form['emailmod'], PDO::PARAM_STR);
+        $mod->bindValue(':adress', $form['adressmod'], PDO::PARAM_STR);
+        $mod->bindValue(':postal', $form['postalmod'], PDO::PARAM_STR);
+        $mod->bindValue(':pass', $form['passmod'], PDO::PARAM_STR);
+        $mod->bindValue(':firstname', $form['firstnamemod'], PDO::PARAM_STR);
+        $mod->bindValue(':lastname', $form['lastnamemod'], PDO::PARAM_STR);
+
+        $mod->execute();
+
+        return TRUE;
     }
 
     public function getConnexion($infosconnect)
@@ -87,7 +97,6 @@ class users
 
         $verif->execute();
 
-
         while ($check = $verif->fetch(PDO::FETCH_ASSOC) ){
             if(( $check['email_user'] ==  $infosconnect['connexionemail']) && ($check['pass_user'] == $infosconnect['connexionpass'] )){
 
@@ -96,13 +105,8 @@ class users
 
                 return TRUE ;
 
-
-
-
             } else { return FALSE;  }
-
         }
-
     }
 
 }
