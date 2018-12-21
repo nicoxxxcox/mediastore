@@ -1,7 +1,6 @@
 <?php
-require_once "../_header.php";
 
-require_once "./_nav.php";
+require_once "./templates/front/_nav.php";
 ?>
 
 
@@ -107,6 +106,6 @@ require_once "./_nav.php";
 
 <?php
 
-require_once "../_footer.php";
+
 ?>
 

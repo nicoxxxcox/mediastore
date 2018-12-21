@@ -29,6 +29,12 @@ if (isset($_GET["categorie"])) {
     $prod->getProducts($cat);
 }
 
+//SEARCHPRODUCTS FRONT
+if (isset($_GET["searchprods"])) {
+
+     header("location:index.php?page=search&s=".$_GET["searchprods"]);
+}
+
 //PRODUCT FRONT
 if (isset($_GET["product"])) {
     $product = $_GET["product"];

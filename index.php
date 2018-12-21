@@ -12,12 +12,6 @@ require_once "./functions.php";
 
 
 
-
-
-
-
-
-
 if (isset($_GET["page"]) && $_GET['page'] == "product") {
 require __DIR__."/templates/front/product.php";
 }
@@ -35,6 +29,12 @@ elseif (isset($_GET["page"]) && $_GET['page'] == "panier" ){
 }
 elseif (isset($_GET["page"]) && $_GET['page'] == "profil" ){
     require __DIR__."/templates/front/profile.php";
+}
+elseif (isset($_GET["page"]) && $_GET['page'] == "payment" ){
+    require __DIR__."/templates/front/payment.php";
+}
+elseif (isset($_GET["page"]) && $_GET['page'] == "search" ){
+    require __DIR__."/templates/front/search.php";
 }
 else { require __DIR__."/templates/front/products.php"; }
 

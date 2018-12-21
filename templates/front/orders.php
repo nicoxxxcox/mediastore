@@ -1,8 +1,5 @@
 <?php
-
-
 require_once "./templates/front/_nav.php";
-
 ?>
 
 <div class="row">
@@ -77,7 +74,7 @@ require_once "./templates/front/_nav.php";
                 </tbody>
             </table>
 
-            <div class="btn btn-primary">Payer et passer la commande</div>
+            <div class="btn btn-primary "><a href="index.php?page=payment" class="text-light">Payer et passer la commande</a></div>
 
 
             <p class="h2 mt-5">Mes commandes</p>
