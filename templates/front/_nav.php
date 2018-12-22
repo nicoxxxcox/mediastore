@@ -2,17 +2,15 @@
 //
 
 
-
-if( !empty($_SESSION['user']) &&  !empty($_SESSION['name'])){
-    $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profil\"><i class=\"fas fa-user\"></i> ".$_SESSION['name']."</a></div>
+if (!empty($_SESSION['user']) && !empty($_SESSION['name'])) {
+    $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profil\"><i class=\"fas fa-user\"></i> " . $_SESSION['name'] . "</a></div>
             <div class=\"useraccount mx-2 \"><a href=\"index.php?page=panier\"> <button class=\"btn btn-sm btn-primary my-2 my-sm-0\"><i class=\"fas fa-shopping-cart\"></i>  Panier</button></a></div>
             <form class=\"form-inline my-2 my-lg-0\" action='index.php' method='POST'>
                 <input class=\"form-control mr-sm-2\" type=\"number\" name=\"deconnexion\" hidden value='1' >
                 <button class=\"btn btn-sm btn-danger my-2 my-sm-0\" type=\"submit\">Deconnexion</button>                
             </form>";
-}
-else{
-    $nav = "<form class=\"form-inline my-2 mx-2 my-lg-0\" method='POST' action='functions.php'>
+} else {
+    $nav = "<form class=\"form-inline my-2 mx-2 my-lg-0\" method='POST' action='index.php'>
                 <small class=\"mx-2 font-weight-bold\">Connexion <br> ou <a href=\"?page=subscribe&reg=2\">s'enregistrer</a></small>
 
                 <input class=\"form-control form-control-sm mr-sm-2\" type=\"text\" name=\"connexionemail\" placeholder=\"Email\" required >
@@ -22,12 +20,12 @@ else{
 }
 
 
-
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
 
-        <a class="navbar-brand" href="?page=products&categorie=2"><img src="../../assets/img/logo.svg" width="150" alt=""></a>
+        <a class="navbar-brand" href="?page=products&categorie=2"><img src="../../assets/img/logo.svg" width="150"
+                                                                       alt=""></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -51,15 +49,15 @@ else{
 
             echo $nav;
 
-                ?>
-
+            ?>
 
 
         </div>
 
 
-
-
-
-
-</nav>
+    </nav>
+<?php
+if (isset($messageUser)) {
+    echo $messageUser;
+}
+?>

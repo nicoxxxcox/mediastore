@@ -69,35 +69,43 @@ if(isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['fi
 else{ $messagemod = "" ;}
 
 
-
 //VERIFYUSER
-if( isset($_POST['connexionemail']) &&  isset($_POST['connexionpass'])){
+if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty($_POST['connexionemail']) && !empty($_POST['connexionpass'])) {
+    extract($_POST);
 
-    $infosconnect = $_POST;
-
-    $verif = $usr->_db->prepare('SELECT id_user , email_user , pass_user , firstname_user  FROM users WHERE email_user=:email');
-    $verif->bindValue(':email', $infosconnect['connexionemail'], PDO::PARAM_STR);
-
+    $verif = $usr->_db->prepare("SELECT id_user , email_user , pass_user , firstname_user  FROM users WHERE email_user= :mail AND pass_user = :pass");
+    $verif->bindValue(':mail', $connexionemail, PDO::PARAM_STR);
+    $verif->bindValue(':pass', $connexionpass, PDO::PARAM_STR);
     $verif->execute();
+    $check = $verif->fetchAll();
 
 
+    if (!empty($check)) {
+        foreach ($check as $row){
+            extract($row);
+            $_SESSION['user'] = $id_user;
+            $_SESSION['name'] = $firstname_user;
+        }
+    } else {
+        session_unset();
+        $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
+                        Mot de passe ou email incorrect !! reesayez ou incrivez vous :-)
+                    </div>";
 
-    while ($check = $verif->fetch(PDO::FETCH_ASSOC) ){
-
-        if(( $check['email_user'] ==  $infosconnect['connexionemail']) && ($check['pass_user'] == $infosconnect['connexionpass'] )){
-
-            $_SESSION['user'] = $check['id_user'];
-            $_SESSION['name'] = $check['firstname_user'];
-
-            $usr->_firstname_user = $check['firstname_user'];
-            $usr->_id_user = $check['id_user'];
-
-            header("location:/index.php?page=products&categorie=2&user=". $_SESSION['user']."?name=".$_SESSION['name']) ;
-
-
-        } else { session_unset(); header("location:index.php?page=products&categorie=2&user=0");  }
     }
 }
+
+//DECONNEXION
+
+if (isset($_POST['deconnexion'])) {
+    if ($_POST['deconnexion'] == 1) {
+
+        session_unset();
+
+        header("location:/index.php?products&categorie=2");
+    }
+}
+
 
 
 
