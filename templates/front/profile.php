@@ -43,7 +43,7 @@ echo "<div class=\"container py-5\">
                     <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Modifier</button>
                     
                     
-                    " . $messagemod . "
+                   
 
 
                 </form>

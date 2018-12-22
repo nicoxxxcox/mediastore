@@ -51,22 +51,22 @@ if (isset($_GET["product"])) {
 
 
 //AFFICHE PROFILE
-if(isset($_GET['page']) &&  $_GET['page'] == "profil") {
-    if(isset($_GET['name'])){
+if(isset($_GET['page']) &&  $_GET['page'] == "profil" && isset($_GET['name']) && isset($_GET['user'])) {
+
         $infosall = $usr->getUser( $_GET['name'] ,$_GET['user'] );
-    }
+
 }
 
 //MOD PROFILE
 if(isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])){
     $usr->setUser($_POST);
 
-    $messagemod = "<div class=\"alert alert-primary m-2\" role=\"alert\">
+    $messageUser = "<div class=\"alert alert-primary m-2\" role=\"alert\">
                         Votre profil à bien été modifié !
                     </div>";
     header("location:index.php?page=profil&name=".$_POST['firstnamemod']."&user=".$_POST['idmod']);
 }
-else{ $messagemod = "" ;}
+else{ $messageUser = "" ;}
 
 
 //VERIFYUSER

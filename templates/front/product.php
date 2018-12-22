@@ -15,8 +15,6 @@ require_once "./templates/front/_nav.php";
 
                 <?php
 
-
-                //
                 if (isset($_GET["product"])) {
                     $res = $prod->getProduct($_GET["product"]);
                     $prod = $res->fetch();
@@ -51,7 +49,11 @@ require_once "./templates/front/_nav.php";
                         <p class=\"card-text\"> Catégorie : " . $categorie . "</p>
                         <p class=\"card-text\">Ajouté le : " . $prod['dateadd'] . "</p>
                         <p class=\"card-text\">Stock : " . $prod['state_product'] . "</p>
-                        <a href=\"#\" class=\"btn btn-primary\">Ajouter au panier</a>
+                        <form action='functions.php' method='POST' class='d-inline'>  
+                            <input type='text' value='" . $prod["id_product"] . "'  name='addcart' hidden>
+                            <button type='submit' class=\"btn btn-success\" ><i class=\"fas fa-cart-plus\"></i> Ajouter au panier</button>
+                        </form>
+                       
                     </div>
                     </div>
                     </div>

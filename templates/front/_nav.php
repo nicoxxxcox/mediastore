@@ -3,7 +3,7 @@
 
 
 if (!empty($_SESSION['user']) && !empty($_SESSION['name'])) {
-    $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profil\"><i class=\"fas fa-user\"></i> " . $_SESSION['name'] . "</a></div>
+    $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profil&name=" . $_SESSION['name'] . "&user=" . $_SESSION['user'] . "\"><i class=\"fas fa-user\"></i> " . $_SESSION['name'] . "</a></div>
             <div class=\"useraccount mx-2 \"><a href=\"index.php?page=panier\"> <button class=\"btn btn-sm btn-primary my-2 my-sm-0\"><i class=\"fas fa-shopping-cart\"></i>  Panier</button></a></div>
             <form class=\"form-inline my-2 my-lg-0\" action='index.php' method='POST'>
                 <input class=\"form-control mr-sm-2\" type=\"number\" name=\"deconnexion\" hidden value='1' >
