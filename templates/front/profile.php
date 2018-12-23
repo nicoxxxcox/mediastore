@@ -7,7 +7,10 @@ require_once "./templates/front/_nav.php";
 echo "<div class=\"container py-5\">
 
         <div class=\"row\">
+        
             <div class=\"col-sm-6 mx-auto mt-5\">
+            
+                <div class='btn btn-secondary '><a href=\"" .  $_SERVER['HTTP_REFERER'] ."\" class='text-light'><i class=\"fas fa-arrow-alt-circle-left\"></i> Retour </a> </div>
                 <form class=\"form-signin p-3 \" method='post' action='functions.php' >
 
                     <img class=\"mb-4 mx-auto d-block\" src=\"../../assets/img/logo.svg\" alt=\"\" width=\"200\" height=\"\">

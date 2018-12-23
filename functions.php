@@ -32,7 +32,7 @@ if (isset($_GET["categorie"])) {
 //SEARCHPRODUCTS FRONT
 if (isset($_GET["searchprods"])) {
 
-     header("location:index.php?page=search&s=".$_GET["searchprods"]);
+    header("location:index.php?page=search&s=" . $_GET["searchprods"]);
 }
 
 //PRODUCT FRONT
@@ -43,30 +43,30 @@ if (isset($_GET["product"])) {
 
 
 //SUBSCRIBE NEW USER
-    if(isset($_POST['emailsubs']) &&  isset($_POST['lastnamesubs']) &&  isset($_POST['firstnamesubs']) &&  isset($_POST['postalsubs']) &&  isset($_POST['passsubs']) &&  isset($_POST['adresssubs'])){
+if (isset($_POST['emailsubs']) && isset($_POST['lastnamesubs']) && isset($_POST['firstnamesubs']) && isset($_POST['postalsubs']) && isset($_POST['passsubs']) && isset($_POST['adresssubs'])) {
     $userinfos = $_POST;
     $usr->setNewUser($userinfos);
 }
 
 
-
 //AFFICHE PROFILE
-if(isset($_GET['page']) &&  $_GET['page'] == "profil" && isset($_GET['name']) && isset($_GET['user'])) {
+if (isset($_GET['page']) && $_GET['page'] == "profil" && isset($_GET['name']) && isset($_GET['user'])) {
 
-        $infosall = $usr->getUser( $_GET['name'] ,$_GET['user'] );
+    $infosall = $usr->getUser($_GET['name'], $_GET['user']);
 
 }
 
 //MOD PROFILE
-if(isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])){
+if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
     $usr->setUser($_POST);
 
     $messageUser = "<div class=\"alert alert-primary m-2\" role=\"alert\">
                         Votre profil à bien été modifié !
                     </div>";
-    header("location:index.php?page=profil&name=".$_POST['firstnamemod']."&user=".$_POST['idmod']);
+    header("location:index.php?page=profil&name=" . $_POST['firstnamemod'] . "&user=" . $_POST['idmod']);
+} else {
+    $messageUser = "";
 }
-else{ $messageUser = "" ;}
 
 
 //VERIFYUSER
@@ -81,7 +81,7 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
 
 
     if (!empty($check)) {
-        foreach ($check as $row){
+        foreach ($check as $row) {
             extract($row);
             $_SESSION['user'] = $id_user;
             $_SESSION['name'] = $firstname_user;
@@ -103,6 +103,21 @@ if (isset($_POST['deconnexion'])) {
         session_unset();
 
         header("location:/index.php?products&categorie=2");
+    }
+}
+
+//ADD TO CART
+
+if (isset($_POST['addcart'])) {
+    if (!empty($_SESSION['user']) && !empty($_SESSION['name'])) {
+
+
+    } else {
+
+        header("location:".$_SERVER['HTTP_REFERER']);
+        $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
+                        Vous n'êtes pas connectés ! Connectez-vous  ou enregistrez-vous pour ajouter un article au panier   
+                    </div>";
     }
 }
 

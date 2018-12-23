@@ -4,6 +4,7 @@ session_start();
 require_once "./functions.php";
 require_once __DIR__ . "/templates/_header.php";
 
+DEFINE('CHE', __DIR__);
 
 
 if (isset($_GET["page"]) && $_GET['page'] == "product") {
