@@ -31,8 +31,21 @@ class database
             die('Erreur : ' . $e->getMessage()); // si ratée affichée la connexion à la bdd
         }
     }
+
+    /**
+     * @param $sql
+     * @return array avec le resultat de la requete en parametre
+     */
+    public function query($sql ,$data = array())
+    {
+        $req = $this->_bdd->prepare($sql );
+        $req->execute($data);
+        return $req->fetchAll( PDO::FETCH_OBJ);
+    }
+
     public function __get($name)
     {
         return $this->$name;
     }
+
 }

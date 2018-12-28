@@ -1,6 +1,5 @@
 <?php
 session_start();
-// on appele le modèle
 require_once "./functions.php";
 require_once __DIR__ . "/templates/_header.php";
 

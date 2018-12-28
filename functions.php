@@ -1,14 +1,17 @@
 <?php
-include_once __DIR__ . "/classes/database.class.php";
-include_once __DIR__ . "/classes/products.class.php";
-include_once __DIR__ . "/classes/users.class.php";
-include_once __DIR__ . "/classes/booksellers.class.php";
-include_once __DIR__ . "/classes/orders.class.php";
+require_once __DIR__ . "/classes/database.class.php";
+require_once __DIR__ . "/classes/products.class.php";
+require_once __DIR__ . "/classes/users.class.php";
+require_once __DIR__ . "/classes/booksellers.class.php";
+require_once __DIR__ . "/classes/orders.class.php";
+require_once __DIR__ . "/classes/cart.class.php";
 
 // bdd
 database::pdo();
 $prod = new products(database::$bdd);
 $usr = new users(database::$bdd);
+$pdo = new database();
+$cart = new cart();
 
 //CATEGORY
 $categorie = "DVD";
@@ -87,11 +90,10 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
             $_SESSION['name'] = $firstname_user;
         }
     } else {
-        session_unset();
-        $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
-                        Mot de passe ou email incorrect !! reesayez ou incrivez vous :-)
-                    </div>";
 
+        $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
+                        Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
+                    </div>";
     }
 }
 
@@ -100,25 +102,27 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
 if (isset($_POST['deconnexion'])) {
     if ($_POST['deconnexion'] == 1) {
 
-        session_unset();
-
-        header("location:/index.php?products&categorie=2");
+        session_destroy();
+        $messageUser = "<div class=\"alert alert-success m-2\" role=\"alert\">
+                        Vous êtes déconnecté !
+                    </div>";
     }
 }
 
 //ADD TO CART
 
-if (isset($_POST['addcart'])) {
-    if (!empty($_SESSION['user']) && !empty($_SESSION['name'])) {
+if (isset($_GET['addcart']) && isset($_GET['page'])) {
 
-
-    } else {
-
-        header("location:".$_SERVER['HTTP_REFERER']);
-        $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
-                        Vous n'êtes pas connectés ! Connectez-vous  ou enregistrez-vous pour ajouter un article au panier   
-                    </div>";
+    $product = $pdo->query('SELECT id_product FROM products WHERE id_product=:id', array('id'=> $_GET['addcart']));
+    if(empty($product)){
+        die("Le produit séléctionné n'existe pas");
     }
+    $cart->add($product[0]->id_product);
+    $messageUser = "<div class=\"alert alert-success m-2\" role=\"alert\">
+                        Vous avez bien ajouté l'article au panier !
+                    </div>";
+
+
 }
 
 

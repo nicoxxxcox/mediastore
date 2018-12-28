@@ -52,8 +52,7 @@ require_once "./templates/front/_nav.php";
             //si le produit est une nouveauté
 
 
-            echo "
-                <div class=\"col-sm-3 my-4\">
+            echo "<div class=\"col-sm-3 my-4\">
                 <div class=\"card text-center\">
                     <div class=\"card-header\">
                        " . $prods["author_product"] . "
@@ -66,20 +65,15 @@ require_once "./templates/front/_nav.php";
                         <h5 class=\"card-title text-warning\">" . $prods["name_product"] . "</h5>
 
                         <a href=\"?page=product&product=" . $prods["id_product"] . "&categorie=" . $prods["categorie_product"] . "\" class=\"btn btn-primary mr-1\">Voir produit</a>
-                        <form action='functions.php' method='POST' class='d-inline'>  
-                            <input type='text' value='" . $prods["id_product"] . "'  name='addcart' hidden>
-                            <button type='submit' class=\"btn btn-success\" ><i class=\"fas fa-cart-plus\"></i></button>
-                        </form>
+                        <a href=\"?page=panier&addcart=" . $prods["id_product"]  . "\" class=\"btn btn-success mr-1\"><i class=\"fas fa-cart-plus\"></i></a>
+                        
                        
                     </div>
                     <div class=\"card-footer text-muted\">
                         <div class=\"btn btn-sm btn-light \">Ajouté le " . $prods["dateadd"] . "</div>
                     </div>
                 </div>
-            </div>
-            
-            
-            ";
+            </div>";
         }
 
         ?>
