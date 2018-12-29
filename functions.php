@@ -113,11 +113,24 @@ if (isset($_POST['deconnexion'])) {
 
 if (isset($_GET['addcart']) && isset($_GET['page'])) {
 
+    if(!isset($_SESSION['name']) && !isset($_SESSION['user'])){
+        $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
+                       Vous devez être connecté pour ajouter un produit au panier !
+                    </div>";
+        session_destroy();
+    }
+
     $product = $pdo->query('SELECT id_product FROM products WHERE id_product=:id', array('id'=> $_GET['addcart']));
     if(empty($product)){
-        die("Le produit séléctionné n'existe pas");
+
+        $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
+                       Le produit selectionné n'existe pas !
+                    </div>";
+        die();
     }
     $cart->add($product[0]->id_product);
+
+
     $messageUser = "<div class=\"alert alert-success m-2\" role=\"alert\">
                         Vous avez bien ajouté l'article au panier !
                     </div>";

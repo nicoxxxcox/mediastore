@@ -13,6 +13,6 @@ class cart
     }
 
     public function add($id_product){
-        $_SESSION['panier'][$id_product] = 1 ;
+        $_SESSION['panier'][$id_product] +=  1 ;
     }
 }
