@@ -59,17 +59,24 @@ if (isset($_GET['page']) && $_GET['page'] == "profil" && isset($_GET['name']) &&
 
 }
 
-//MOD PROFILE
-if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
-    $usr->setUser($_POST);
+//AFFICHE PANIER
+if (isset($_GET['page']) && $_GET['page'] == 'panier'){
 
-    $messageUser = "<div class=\"alert alert-primary m-2\" role=\"alert\">
+    $getCart = $_SESSION['panier'];
+
+}
+
+//MOD PROFILE
+    if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
+        $usr->setUser($_POST);
+
+        $messageUser = "<div class=\"alert alert-primary m-2\" role=\"alert\">
                         Votre profil à bien été modifié !
                     </div>";
-    header("location:index.php?page=profil&name=" . $_POST['firstnamemod'] . "&user=" . $_POST['idmod']);
-} else {
-    $messageUser = "";
-}
+        header("location:index.php?page=profil&name=" . $_POST['firstnamemod'] . "&user=" . $_POST['idmod']);
+    } else {
+        $messageUser = "";
+    }
 
 
 //VERIFYUSER
@@ -113,27 +120,27 @@ if (isset($_POST['deconnexion'])) {
 
 if (isset($_GET['addcart']) && isset($_GET['page'])) {
 
-    if(!isset($_SESSION['name']) && !isset($_SESSION['user'])){
+    if (!isset($_SESSION['name']) && !isset($_SESSION['user'])) {
         $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
                        Vous devez être connecté pour ajouter un produit au panier !
                     </div>";
         session_destroy();
-    }
+    } else {
 
-    $product = $pdo->query('SELECT id_product FROM products WHERE id_product=:id', array('id'=> $_GET['addcart']));
-    if(empty($product)){
+        $product = $pdo->query('SELECT id_product FROM products WHERE id_product=:id', array('id' => $_GET['addcart']));
+        if (empty($product)) {
 
-        $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
+            $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
                        Le produit selectionné n'existe pas !
                     </div>";
-        die();
-    }
-    $cart->add($product[0]->id_product);
-
-
-    $messageUser = "<div class=\"alert alert-success m-2\" role=\"alert\">
+            die();
+        }
+        $cart->add($product[0]->id_product);
+        $messageUser = "<div class=\"alert alert-success m-2\" role=\"alert\">
                         Vous avez bien ajouté l'article au panier !
                     </div>";
+
+    }
 
 
 }

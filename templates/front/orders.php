@@ -8,6 +8,8 @@ require_once "./templates/front/_nav.php";
 
             <p class="h2">Mon panier</p>
 
+
+
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -24,8 +26,13 @@ require_once "./templates/front/_nav.php";
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
+
+                <?php
+
+                foreach($getCart as  $row){
+
+                    echo '<tr>
+                    <th scope="row">'.$getCart[0].'</th>
                     <td><a href="#" style="">Mark</a></td>
                     <td>Otto</td>
                     <td>CD</td>
@@ -33,14 +40,18 @@ require_once "./templates/front/_nav.php";
                     <td>150</td>
                     <td>15/06/2018</td>
                     <td><form action="">
-                            <input type="number" name="quantite" @ id="">
+                            <input type="number" name="quantite" value="'.$getCart[1].'" id="">
                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
                         </form></td>
                     <td>200 €</td>
 
 
 
-                </tr>
+                </tr>';
+
+                }
+                ?>
+
                 <tr>
                     <th scope="row">2</th>
                     <td>Jacob</td>
