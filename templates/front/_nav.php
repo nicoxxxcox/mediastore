@@ -57,6 +57,8 @@ if (!empty($_SESSION['user']) && !empty($_SESSION['name'])) {
 
     </nav>
 <?php
+
+// ICI ON AFFICHE LE MESSAGE
 if (isset($messageUser)) {
     echo $messageUser;
 }

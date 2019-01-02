@@ -60,32 +60,32 @@ if (isset($_GET['page']) && $_GET['page'] == "profil" && isset($_GET['name']) &&
 }
 
 //AFFICHE PANIER
-if (isset($_GET['page']) && $_GET['page'] == 'panier'){
+if (isset($_GET['page']) && $_GET['page'] == 'panier') {
 
     $getCart = $_SESSION['panier'];
 
 }
 
 //MOD PROFILE
-    if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
-        $usr->setUser($_POST);
+if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
+    $usr->setUser($_POST);
 
-        $messageUser = "<div class=\"alert alert-primary m-2\" role=\"alert\">
+    $messageUser = "<div class=\"alert alert-primary m-2\" role=\"alert\">
                         Votre profil à bien été modifié !
                     </div>";
-        header("location:index.php?page=profil&name=" . $_POST['firstnamemod'] . "&user=" . $_POST['idmod']);
-    } else {
-        $messageUser = "";
-    }
+    header("location:index.php?page=profil&name=" . $_POST['firstnamemod'] . "&user=" . $_POST['idmod']);
+} else {
+    $messageUser = "";
+}
 
 
 //VERIFYUSER
 if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty($_POST['connexionemail']) && !empty($_POST['connexionpass'])) {
     extract($_POST);
 
-    $verif = $usr->_db->prepare("SELECT id_user , email_user , pass_user , firstname_user  FROM users WHERE email_user= :mail AND pass_user = :pass");
+    $verif = $usr->_db->prepare("SELECT id_user , email_user , pass_user , firstname_user  FROM users WHERE email_user= :mail ");
     $verif->bindValue(':mail', $connexionemail, PDO::PARAM_STR);
-    $verif->bindValue(':pass', $connexionpass, PDO::PARAM_STR);
+
     $verif->execute();
     $check = $verif->fetchAll();
 
@@ -93,8 +93,21 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
     if (!empty($check)) {
         foreach ($check as $row) {
             extract($row);
-            $_SESSION['user'] = $id_user;
-            $_SESSION['name'] = $firstname_user;
+
+
+            if (password_verify($connexionpass, $pass_user)) {
+
+
+                $_SESSION['user'] = $id_user;
+                $_SESSION['name'] = $firstname_user;
+                $messageUser = "<div class=\"alert alert-success m-2\" role=\"alert\">
+                        Bienvenue sur Medi@Store " . $firstname_user . " 
+                    </div>";
+            } else {
+                $messageUser = "<div class=\"alert alert-danger m-2\" role=\"alert\">
+                        Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
+                    </div>";
+            }
         }
     } else {
 
@@ -113,6 +126,7 @@ if (isset($_POST['deconnexion'])) {
         $messageUser = "<div class=\"alert alert-success m-2\" role=\"alert\">
                         Vous êtes déconnecté !
                     </div>";
+
     }
 }
 

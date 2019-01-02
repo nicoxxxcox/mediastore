@@ -35,15 +35,16 @@ class users
 
     public function setNewUser($userinfos)
     {
-        $req = $this->_db->prepare('INSERT INTO users (type_user , email_user , adress_user , postal_user , pass_user, firstname_user , lastname_user ) VALUES (:type , :email , :adress , :postal , :pass , :firstname , :lastname )');
+        $req = $this->_db->prepare('INSERT INTO users (type_user , email_user , adress_user , postal_user , pass_user, firstname_user , lastname_user , idconnect_user ) VALUES (:type , :email , :adress , :postal , :pass , :firstname , :lastname , :idconnect )');
         $req->bindValue(':type', 2, PDO::PARAM_INT);
         $req->bindValue(':email', $userinfos['emailsubs'], PDO::PARAM_STR);
         $req->bindValue(':adress', $userinfos['adresssubs'], PDO::PARAM_STR);
         $req->bindValue(':postal', $userinfos['postalsubs'], PDO::PARAM_STR);
 
-        $req->bindValue(':pass', $userinfos['passsubs'], PDO::PARAM_STR);
+        $req->bindValue(':pass', password_hash($userinfos['passsubs'] , PASSWORD_DEFAULT ), PDO::PARAM_STR);
         $req->bindValue(':firstname', $userinfos['firstnamesubs'], PDO::PARAM_STR);
         $req->bindValue(':lastname', $userinfos['lastnamesubs'], PDO::PARAM_STR);
+        $req->bindValue(':idconnect', rand(0000000001,9999999999), PDO::PARAM_INT);
 
         $verif = $this->_db->prepare('SELECT email_user FROM users WHERE email_user=:email ');
         $verif->bindValue(':email', $userinfos['emailsubs'], PDO::PARAM_STR);
@@ -56,11 +57,11 @@ class users
         if (empty($count)) {
             $req->execute();
             // l'enregistrement s'est bien passé
-            header("location:/?page=subscribe&reg=1");
+            header("location:/index.php?page=subscribe&reg=1");
 
 
         } elseif (!empty($count)) {  // l'enregistrement s'est mail passé un email exite déja
-            header("location:/?page=subscribe&reg=0");
+            header("location:/index.php?page=subscribe&reg=0");
         }
 
     }
@@ -80,7 +81,7 @@ class users
         $mod->bindValue(':email', $form['emailmod'], PDO::PARAM_STR);
         $mod->bindValue(':adress', $form['adressmod'], PDO::PARAM_STR);
         $mod->bindValue(':postal', $form['postalmod'], PDO::PARAM_STR);
-        $mod->bindValue(':pass', $form['passmod'], PDO::PARAM_STR);
+        $mod->bindValue(':pass', password_hash($form['passmod'] , PASSWORD_DEFAULT ), PDO::PARAM_STR);
         $mod->bindValue(':firstname', $form['firstnamemod'], PDO::PARAM_STR);
         $mod->bindValue(':lastname', $form['lastnamemod'], PDO::PARAM_STR);
 
@@ -98,7 +99,7 @@ class users
         $verif->execute();
 
         while ($check = $verif->fetch(PDO::FETCH_ASSOC) ){
-            if(( $check['email_user'] ==  $infosconnect['connexionemail']) && ($check['pass_user'] == $infosconnect['connexionpass'] )){
+            if(( $check['email_user'] ==  $infosconnect['connexionemail']) && password_verify( $check['pass_user'] ,  $infosconnect['connexionpass'])  ){
 
                 $this->_firstname_user = $check['firstname_user'];
                 $this->_id_user = $check['id_user'];
