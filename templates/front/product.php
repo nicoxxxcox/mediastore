@@ -1,7 +1,7 @@
 <?php
 
 
-require_once "./templates/front/_nav.php";
+require "./templates/front/_nav.php";
 ?>
 
 <div class="container py-5">

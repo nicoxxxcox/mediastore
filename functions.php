@@ -13,6 +13,8 @@ $usr = new users(database::$bdd);
 $pdo = new database();
 $cart = new cart();
 
+
+
 //CATEGORY
 $categorie = "DVD";
 if (isset($_GET['categorie'])) {
@@ -121,12 +123,18 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
 
 if (isset($_POST['deconnexion'])) {
     if ($_POST['deconnexion'] == 1) {
-
         session_destroy();
+        header("location:index.php?deconnexion=1");
+    }
+}
+
+// DECONNEXION MESSAGE
+
+if (isset($_GET['deconnexion'])) {
+    if ($_GET['deconnexion'] == 1) {
         $messageUser = "<div class=\"alert alert-success m-2\" role=\"alert\">
                         Vous êtes déconnecté !
                     </div>";
-
     }
 }
 

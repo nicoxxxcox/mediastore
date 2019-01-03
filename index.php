@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once "./functions.php";
-require_once __DIR__ . "/templates/_header.php";
+require "./functions.php";
+require __DIR__ . "/templates/_header.php";
 
-DEFINE('CHE', __DIR__);
+
 
 
 if (isset($_GET["page"]) && $_GET['page'] == "product") {
@@ -38,4 +38,4 @@ if (isset($_GET["page"]) && $_GET['page'] == "product") {
 
 
 
-require_once __DIR__ . "/templates/_footer.php";
+require __DIR__ . "/templates/_footer.php";
