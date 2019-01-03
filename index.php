@@ -5,7 +5,7 @@ require __DIR__ . "/templates/_header.php";
 
 
 
-
+/*
 if (isset($_GET["page"]) && $_GET['page'] == "product") {
     require __DIR__ . "/templates/front/product.php";
 } elseif (isset($_GET["page"]) && $_GET['page'] == "products") {
@@ -14,9 +14,9 @@ if (isset($_GET["page"]) && $_GET['page'] == "product") {
     require __DIR__ . "/templates/front/home.php";
 } elseif (isset($_GET["page"]) && $_GET['page'] == "subscribe") {
     require __DIR__ . "/templates/front/subscribe.php";
-} elseif (isset($_GET["page"]) && $_GET['page'] == "panier") {
+} elseif (isset($_GET["page"]) && $_GET['page'] == "orders") {
     require __DIR__ . "/templates/front/orders.php";
-} elseif (isset($_GET["page"]) && $_GET['page'] == "profil") {
+} elseif (isset($_GET["page"]) && $_GET['page'] == "profile") {
     require __DIR__ . "/templates/front/profile.php";
 } elseif (isset($_GET["page"]) && $_GET['page'] == "payment") {
     require __DIR__ . "/templates/front/payment.php";
@@ -32,7 +32,13 @@ if (isset($_GET["page"]) && $_GET['page'] == "product") {
     require __DIR__ . "/templates/back/orders.php";
 } else {
     require __DIR__ . "/templates/front/home.php";
+}*/
+if (isset($_GET["page"])) {
+    require __DIR__ . "/templates/front/" . $_GET["page"] . ".php";
+} else {
+    require __DIR__ . "/templates/front/home.php";
 }
+
 
 
 

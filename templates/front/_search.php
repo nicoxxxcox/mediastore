@@ -1,5 +1,5 @@
-<div class="card col-sm-12 bg-light">
-    <div class="card-body">
+<div class="card col-sm-12 bg-light shadow-lg">
+    <div class="card-body ">
 
         <form class="mb-4" action="functions.php" method="get">
 

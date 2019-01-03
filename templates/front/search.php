@@ -1,10 +1,11 @@
+<?php
+require "./templates/front/_nav.php";
+?>
 <div class="container py-5">
 
     <div class="row">
         <?php
-        require_once "_search.php";
-
-
+        require "_search.php";
         ?>
     </div>
 

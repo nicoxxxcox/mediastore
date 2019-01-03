@@ -4,8 +4,8 @@ if (!empty($_SESSION['user']) && !empty($_SESSION['name'])) {
 
 
 
-    $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profil&name=" . $_SESSION['name'] . "&user=" . $_SESSION['user'] . "\"><i class=\"fas fa-user\"></i> " . $_SESSION['name'] . "</a></div>
-            <div class=\"useraccount mx-2 \"><a href=\"index.php?page=panier\"> <button class=\"btn btn-sm btn-primary my-2 my-sm-0\"><i class=\"fas fa-shopping-cart\"></i>  Panier</button></a></div>
+    $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profile&name=" . $_SESSION['name'] . "&user=" . $_SESSION['user'] . "\"><i class=\"fas fa-user\"></i> " . $_SESSION['name'] . "</a></div>
+            <div class=\"useraccount mx-2 \"><a href=\"index.php?page=orders\"> <button class=\"btn btn-sm btn-primary my-2 my-sm-0\"><i class=\"fas fa-shopping-cart\"></i>  Panier</button></a></div>
             <form class=\"form-inline my-2 my-lg-0\" action='index.php' method='POST'>
                 <input class=\"form-control mr-sm-2\" type=\"number\" name=\"deconnexion\" hidden value='1' >
                 <button class=\"btn btn-sm btn-danger my-2 my-sm-0\" type=\"submit\">Deconnexion</button>                
@@ -22,7 +22,7 @@ if (!empty($_SESSION['user']) && !empty($_SESSION['name'])) {
 
 
 ?>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning shadow">
         <a class="navbar-brand" href="?page=products&categorie=2"><img src="../../assets/img/logo.svg" width="150"
                                                                        alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

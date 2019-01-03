@@ -15,7 +15,7 @@ $cart = new cart();
 
 
 
-//CATEGORY
+//CATEGORY CONVERSION
 $categorie = "DVD";
 if (isset($_GET['categorie'])) {
     if ($_GET['categorie'] == 0) {
@@ -49,24 +49,16 @@ if (isset($_GET["product"])) {
 
 //SUBSCRIBE NEW USER
 if (isset($_POST['emailsubs']) && isset($_POST['lastnamesubs']) && isset($_POST['firstnamesubs']) && isset($_POST['postalsubs']) && isset($_POST['passsubs']) && isset($_POST['adresssubs'])) {
-    $userinfos = $_POST;
-    $usr->setNewUser($userinfos);
+
+    $usr->setNewUser($_POST);
 }
 
 
 //AFFICHE PROFILE
-if (isset($_GET['page']) && $_GET['page'] == "profil" && isset($_GET['name']) && isset($_GET['user'])) {
-
+if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['name']) && isset($_GET['user'])) {
     $infosall = $usr->getUser($_GET['name'], $_GET['user']);
-
 }
 
-//AFFICHE PANIER
-if (isset($_GET['page']) && $_GET['page'] == 'panier') {
-
-    $getCart = $_SESSION['panier'];
-
-}
 
 //MOD PROFILE
 if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
@@ -75,10 +67,18 @@ if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['f
     $messageUser = "<div class=\"alert alert-primary m-2\" role=\"alert\">
                         Votre profil à bien été modifié !
                     </div>";
-    header("location:index.php?page=profil&name=" . $_POST['firstnamemod'] . "&user=" . $_POST['idmod']);
+    header("location:index.php?page=profile&name=" . $_POST['firstnamemod'] . "&user=" . $_POST['idmod']);
 } else {
     $messageUser = "";
 }
+
+//AFFICHE PANIER
+if (isset($_GET['page']) && $_GET['page'] == 'orders') {
+
+    $getCart = $_SESSION['panier'];
+
+}
+
 
 
 //VERIFYUSER

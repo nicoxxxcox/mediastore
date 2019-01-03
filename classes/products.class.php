@@ -58,11 +58,11 @@ class products
     }
 
     public function searchProduct($search){
-        $res = $this->_db->prepare('SELECT * , DATE_FORMAT(added_product, "%e/%m/%Y") dateadd FROM products WHERE name_product = :name OR author_product = :author OR categorie_product = :categorie ');
+        $res = $this->_db->prepare('SELECT * , DATE_FORMAT(added_product, "%e/%m/%Y") dateadd FROM products WHERE name_product LIKE :name OR author_product LIKE :author OR categorie_product LIKE :categorie ');
 
-        $res->bindValue(':name', $search, PDO::PARAM_STR);
-        $res->bindValue(':author', $search, PDO::PARAM_STR);
-        $res->bindValue(':categorie', $search, PDO::PARAM_STR);
+        $res->bindValue(':name', '%' . $search . '%', PDO::PARAM_STR);
+        $res->bindValue(':author', '%' . $search . '%', PDO::PARAM_STR);
+        $res->bindValue(':categorie','%' . $search . '%', PDO::PARAM_STR);
 
         $res->execute();
 

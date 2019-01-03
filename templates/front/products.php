@@ -53,19 +53,19 @@ require "./templates/front/_nav.php";
 
 
             echo "<div class=\"col-sm-3 my-4\">
-                <div class=\"card text-center\">
-                    <div class=\"card-header\">
-                       " . $prods["author_product"] . "
+                <div class=\"card text-center shadow\">
+                    <div class=\"card-header font-weight-bold\">
+                       " . substr($prods["author_product"], 0, 24) . "
                     </div>
                     <a href=\"?page=product&product=" . $prods["id_product"] . "&categorie=" . $prods["categorie_product"] . "\" >
                         <img class=\"card-img-top\" src='" . $prods["url_product"] . "' width=\"253\" height=\"151\" alt=\"Card image cap\" style=\"object-fit: cover\">
                     </a>
                     <div class=\"card-body\">
-                    <h5 class=\"card-title \">" . $prods["price_product"] . " €</h5>
-                        <h5 class=\"card-title text-warning\">" . $prods["name_product"] . "</h5>
+                    <h5 class=\"card-title font-weight-bold \">" . $prods["price_product"] . " €</h5>
+                        <h5 class=\"card-title text-warning font-weight-bold\">" . $prods["name_product"] . "</h5>
 
                         <a href=\"?page=product&product=" . $prods["id_product"] . "&categorie=" . $prods["categorie_product"] . "\" class=\"btn btn-primary mr-1\">Voir produit</a>
-                        <a href=\"?page=panier&addcart=" . $prods["id_product"]  . "\" class=\"btn btn-success mr-1\"><i class=\"fas fa-cart-plus\"></i></a>
+                        <a href=\"?page=orders&addcart=" . $prods["id_product"]  . "\" class=\"btn btn-success mr-1\"><i class=\"fas fa-cart-plus\"></i></a>
                         
                        
                     </div>

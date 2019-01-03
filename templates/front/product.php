@@ -10,7 +10,7 @@ require "./templates/front/_nav.php";
     <div class="row">
         <div class="col-sm-8 my-4">
 
-            <div class="card ">
+            <div class="card shadow ">
 
 
                 <?php
@@ -33,7 +33,7 @@ require "./templates/front/_nav.php";
                 }
 
                 echo "
-                    <div class=\"card-header\">
+                    <div class=\"card-header font-weight-bold\">
                         
                         " . $prod['author_product'] . "
                        
@@ -41,9 +41,9 @@ require "./templates/front/_nav.php";
                     <div class=\"card-body\">
                         <div class=\"btn btn-sm btn-success my-3\">Nouveauté</div>
 
-                        <h3 class=\"card-title \">" . $prod['price_product'] . " €</h3>
+                        <h3 class=\"card-title font-weight-bold \">" . $prod['price_product'] . " €</h3>
 
-                        <h5 class=\"card-title text-warning\">" . $prod['name_product'] . "</h5>
+                        <h5 class=\"card-title text-warning font-weight-bold\">" . $prod['name_product'] . "</h5>
                         <p class=\"card-text\">" . $prod['description_product'] . "</p>
                         <p class=\"card-text\"> Editeur : " . $prod['editor_product'] . "</p>
                         <p class=\"card-text\"> Catégorie : " . $categorie . "</p>
@@ -61,7 +61,7 @@ require "./templates/front/_nav.php";
 
 
 
-            <div class=\"col-sm-4 my-4\">
+            <div class=\"col-sm-4 my-4 shadow\">
 
                 <img class=\"card-img-top\" src=\"" . $prod['url_product'] . "\" width=\"350\"  alt=\"Card image cap\" style=\"object-fit: cover\">
             </div>
