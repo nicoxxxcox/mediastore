@@ -43,7 +43,8 @@ class users
         $req->bindValue(':pass', password_hash($userinfos['passsubs'], PASSWORD_DEFAULT), PDO::PARAM_STR);
         $req->bindValue(':firstname', $userinfos['firstnamesubs'], PDO::PARAM_STR);
         $req->bindValue(':lastname', $userinfos['lastnamesubs'], PDO::PARAM_STR);
-        $req->bindValue(':guid_user', com_create_guid(), PDO::PARAM_INT);
+
+        $req->bindValue(':guid_user', gen_uuid(), PDO::PARAM_STR);
 
         $verif = $this->_db->prepare('SELECT email_user FROM users WHERE email_user=:email ');
         $verif->bindValue(':email', $userinfos['emailsubs'], PDO::PARAM_STR);
@@ -57,12 +58,10 @@ class users
             $req->execute();
             // l'enregistrement s'est bien passé
             header("location:index.php?page=subscribe&reg=1");
-
-
-        } elseif (!empty($count)) {  // l'enregistrement s'est mail passé un email exite déja
+        } elseif (!empty($count)) {
+            // l'enregistrement s'est mail passé un email exite déja
             header("location:index.php?page=subscribe&reg=0");
         }
-
     }
 
     public function getUser($name, $id)

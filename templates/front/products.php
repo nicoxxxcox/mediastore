@@ -32,13 +32,13 @@ require "./templates/front/_nav.php";
     <div class="row">
 
         <?php
-
         //Catégorie par defaut est DVD
         if (isset($_GET["categorie"])) {
 
         } else {
             $cat = 2;
         }
+
 
 
         // boucle d'affichage des produits
