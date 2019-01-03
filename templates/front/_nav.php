@@ -52,6 +52,9 @@ if (!empty($_SESSION['user']) && !empty($_SESSION['name'])) {
 
 // ICI ON AFFICHE LE MESSAGE
 if (isset($messageUser)) {
-    echo $messageUser;
+    echo
+    "<div class='container ' > <div class='col '>" .
+    $messageUser
+    . "</div></div>" ;
 }
 ?>

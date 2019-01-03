@@ -34,7 +34,7 @@ class users
 
     public function setNewUser($userinfos)
     {
-        $req = $this->_db->prepare('INSERT INTO users (type_user , email_user , adress_user , postal_user , pass_user, firstname_user , lastname_user , idconnect_user ) VALUES (:type , :email , :adress , :postal , :pass , :firstname , :lastname , :idconnect )');
+        $req = $this->_db->prepare('INSERT INTO users (type_user , email_user , adress_user , postal_user , pass_user, firstname_user , lastname_user , guid_user ) VALUES (:type , :email , :adress , :postal , :pass , :firstname , :lastname , :guid_user )');
         $req->bindValue(':type', 2, PDO::PARAM_INT);
         $req->bindValue(':email', $userinfos['emailsubs'], PDO::PARAM_STR);
         $req->bindValue(':adress', $userinfos['adresssubs'], PDO::PARAM_STR);
@@ -43,7 +43,7 @@ class users
         $req->bindValue(':pass', password_hash($userinfos['passsubs'], PASSWORD_DEFAULT), PDO::PARAM_STR);
         $req->bindValue(':firstname', $userinfos['firstnamesubs'], PDO::PARAM_STR);
         $req->bindValue(':lastname', $userinfos['lastnamesubs'], PDO::PARAM_STR);
-        $req->bindValue(':idconnect', rand(0000000001, 9999999999), PDO::PARAM_INT);
+        $req->bindValue(':guid_user', com_create_guid(), PDO::PARAM_INT);
 
         $verif = $this->_db->prepare('SELECT email_user FROM users WHERE email_user=:email ');
         $verif->bindValue(':email', $userinfos['emailsubs'], PDO::PARAM_STR);
@@ -56,11 +56,11 @@ class users
         if (empty($count)) {
             $req->execute();
             // l'enregistrement s'est bien passé
-            header("location:/index.php?page=subscribe&reg=1");
+            header("location:index.php?page=subscribe&reg=1");
 
 
         } elseif (!empty($count)) {  // l'enregistrement s'est mail passé un email exite déja
-            header("location:/index.php?page=subscribe&reg=0");
+            header("location:index.php?page=subscribe&reg=0");
         }
 
     }
