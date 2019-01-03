@@ -27,7 +27,7 @@ require "./templates/front/_nav.php";
             extract($row);
             echo "
                 <div class=\"col-sm-3 my-4\">
-                <div class=\"card text-center\">
+                <div class=\"card text-center \">
                     <div class=\"card-header\">
                        " . $author_product . "
                     </div>

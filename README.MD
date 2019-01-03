@@ -1,4 +1,5 @@
 # MEDIASTORE
+![Home](mediastore-home.png "Home")
 
 ## Technologies
 ### ENVIRONNEMENT DE DEV
