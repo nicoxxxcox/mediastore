@@ -73,7 +73,12 @@ if (isset($_GET["product"])) {
 if (isset($_POST['emailsubs']) && isset($_POST['lastnamesubs']) && isset($_POST['firstnamesubs']) && isset($_POST['postalsubs']) && isset($_POST['passsubs']) && isset($_POST['adresssubs'])) {
 
     $usr->setNewUser($_POST);
+
+
+
 }
+
+
 
 
 //AFFICHE PROFILE
@@ -158,7 +163,7 @@ if (isset($_POST['deconnexion'])) {
 if (isset($_GET['deconnexion'])) {
     if ($_GET['deconnexion'] == 1) {
         $messageUser = "<div class=\"alert alert-success shadow m-2\" role=\"alert\">
-                        Vous êtes déconnecté !
+                        Vous êtes maintenant déconnecté !
                     </div>";
     }
 }

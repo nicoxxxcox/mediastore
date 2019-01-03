@@ -41,19 +41,29 @@ require "./templates/front/_nav.php";
 
                 <?php
 
-                    // affichage du message
-                    $message = NULL;
+
+                // DISPLAY SUBSCRIBE MESSAGE
+
+                if(isset($_GET['reg'])){
+
+
+
                     if($_GET['reg'] == 1){
-                        $message =   "<div class=\"alert alert-primary m-2\" role=\"alert\">
-            Vous êtes bien engistré, bienvenue
+
+
+                        $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
+                       Vous êtes maintenant enregistré !
                     </div>";
 
+
+
                     } elseif ($_GET['reg'] == 0){
-                        $message =   "<div class=\"alert alert-danger m-2\" role=\"alert\">
+                        $messageUser =   "<div class=\"alert alert-danger m-2\" role=\"alert\">
             Cet email est déjà enregistré
                     </div>";
                     }
-                    echo $message;
+                    echo $messageUser;
+                }
 
 
                 ?>
