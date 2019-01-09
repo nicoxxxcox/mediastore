@@ -1,22 +1,10 @@
 <?php
 class products
 {
-    // catégories : 0-> sans ; 1->CD ; 2->DVD
+
 
 
     private $_db;
-
-    private $_id_product;
-    private $_state_product;
-    private $_name_product;
-    private $_description_product;
-    private $_categorie_product;
-    private $_price_product;
-    private $added_product;
-    private $_editiondate_product;
-    private $_editor_product;
-    private $_author_product;
-
 
     /**
      * todo constructor.
@@ -40,7 +28,7 @@ class products
     }
 
     /**
-     * @return table
+     * @return mixed
      *
      */
     public function getProducts($cat)
@@ -50,6 +38,10 @@ class products
         return $res;
     }
 
+    /**
+     * @param $product
+     * @return mixed - return an array res who contain the product information
+     */
     public function getProduct($product)
     {
 
@@ -57,6 +49,10 @@ class products
         return $res;
     }
 
+    /**
+     * @param $search
+     * @return mixed
+     */
     public function searchProduct($search){
         $res = $this->_db->prepare('SELECT * , DATE_FORMAT(added_product, "%e/%m/%Y") dateadd FROM products WHERE name_product LIKE :name OR author_product LIKE :author OR categorie_product LIKE :categorie ');
 

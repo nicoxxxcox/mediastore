@@ -1,6 +1,4 @@
 <?php
-
-
 require "./templates/front/_nav.php";
 ?>
 
@@ -11,18 +9,13 @@ require "./templates/front/_nav.php";
         <div class="col-sm-8 my-4">
 
             <div class="card shadow ">
-
-
                 <?php
-
                 if (isset($_GET["product"])) {
                     $res = $prod->getProduct($_GET["product"]);
                     $prod = $res->fetch();
                 } else {
                     echo "Ce produits n'exite pas ! ";
                 }
-
-
                 //CATEGORY
                 if ($prod['categorie_product'] == 0) {
                     $categorie = "Autre";
@@ -31,7 +24,6 @@ require "./templates/front/_nav.php";
                 } elseif ($prod['categorie_product'] == 2) {
                     $categorie = "DVD";
                 }
-
                 echo "
                     <div class=\"card-header font-weight-bold\">
                         
@@ -48,30 +40,20 @@ require "./templates/front/_nav.php";
                         <p class=\"card-text\"> Editeur : " . $prod['editor_product'] . "</p>
                         <p class=\"card-text\"> Catégorie : " . $categorie . "</p>
                         <p class=\"card-text\">Ajouté le : " . $prod['dateadd'] . "</p>
-                        <p class=\"card-text\">Stock : " . $prod['state_product'] . "</p>
-                        <form action='functions.php' method='POST' class='d-inline'>  
-                            <input type='text' value='" . $prod["id_product"] . "'  name='addcart' hidden>
-                            <button type='submit' class=\"btn btn-success\" ><i class=\"fas fa-cart-plus\"></i> Ajouter au panier</button>
-                        </form>
-                       
-                    </div>
-                    </div>
-                    </div>
-
-
-
-
-            <div class=\"col-sm-4 my-4 shadow\">
-
-                <img class=\"card-img-top\" src=\"" . $prod['url_product'] . "\" width=\"350\"  alt=\"Card image cap\" style=\"object-fit: cover\">
+                        <p class=\"card-text\">Stock : " . $prod['state_product'] . '</p>
+                       <a href=\'?page=orders&addcart=' . $prod['id_product'] . '\' class="btn btn-success"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
+                       </div>
+                </div>
+            </div>
+            <div class="col-sm-4 my-4 shadow">
+                <img class="" src="' . $prod['url_product'] . "\" width=\"350\"  alt=\"Card image cap\" style=\"object-fit: cover\">
             </div>
             
             <div class='row'>
             
-            <a href='index.php?page=products&categorie=" . $prod['categorie_product'] . "' class='btn btn-secondary'> <- Retour aux " . $categorie . " </a>
+            <a href='index.php?page=products&categorie=" . $prod['categorie_product'] . "'class='btn btn-secondary'> <- Retour aux " . $categorie . " </a>
 </div>
-            
-             "; ?>
+"; ?>
 
 
             </div>
