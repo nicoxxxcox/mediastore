@@ -15,6 +15,23 @@ $cart = new cart(database::$bdd);
 
 
 //CATEGORY CONVERSION
+
+function whatCategory($cat)
+{
+    $categorie = "";
+    switch ($cat) {
+        case 0 :
+            $categorie = "Autre";
+            break;
+        case 1 :
+            $categorie = "CD";
+            break;
+        case 2 :
+            $categorie = "DVD";
+            break;
+    }
+}
+
 $categorie = "DVD";
 if (isset($_GET['categorie'])) {
     if ($_GET['categorie'] == 0) {
@@ -53,21 +70,15 @@ function gen_uuid()
 function tronque($chaine, $longueur = 120)
 {
 
-    if (empty ($chaine))
-    {
+    if (empty ($chaine)) {
         return "";
-    }
-    elseif (strlen ($chaine) < $longueur)
-    {
+    } elseif (strlen($chaine) < $longueur) {
         return $chaine;
-    }
-    /*elseif (preg_match("/(.{1,$longueur})\s./ms", $chaine, $match))
+    } /*elseif (preg_match("/(.{1,$longueur})\s./ms", $chaine, $match))
     {
         return $match [1] . "...";
-    }*/
-    else
-    {
-        $str = substr($chaine,0,$longueur-strlen("...")+1);
+    }*/ else {
+        $str = substr($chaine, 0, $longueur - strlen("...") + 1);
         //return substr($str,0,strrpos($str,' '))."...";
 
         return substr($chaine, 0, $longueur) . "...";
@@ -184,7 +195,7 @@ if (isset($_GET['addcart']) && isset($_GET['page'])) {
         session_destroy();
     } else {
         $exist = $cart->productExist($_GET['addcart']);
-        if($exist == false){
+        if ($exist == false) {
             $messageUser = '<div class="alert alert-danger shadow m-2" role="alert">
                        Le produit selectionné n\'existe pas !
                     </div>';
@@ -193,14 +204,15 @@ if (isset($_GET['addcart']) && isset($_GET['page'])) {
             $cart->add($_GET['addcart']);
             $messageUser = "<div class=\"alert alert-success shadow m-2\" role=\"alert\">
                         Vous avez bien ajouté l'article au panier !
-                    </div>"; }
+                    </div>";
+        }
     }
 }
 
 //AFFICHE PANIER
 if (isset($_GET['page']) && $_GET['page'] == 'orders') {
 
-    if(empty($_SESSION['panier'])){
+    if (empty($_SESSION['panier'])) {
         $messageUser = '<div class="alert alert-danger shadow m-2" role="alert">
                       Le pannier est vide
                     </div>';

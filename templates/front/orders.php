@@ -29,21 +29,21 @@ require "./templates/front/_nav.php";
             <?php
             foreach ($_SESSION['panier']['id_product'] as $id => $value) {
                 $cartAll = $cart->getInfos($id);
-                while($c = $cartAll->fetch()){
+                while ($c = $cartAll->fetch()) {
                     echo '<tr>
                     <td >' . $id . '</td>
-                    <td><a href="?page=product&categorie='.$c["categorie_product"].'&product='.$id.'" style="">'. tronque($c["name_product"] , 15).'</a></td>
-                    <td>'. tronque($c["author_product"] , 15) .'</td>
-                    <td>'. $c["categorie_product"].'</td>
-                    <td>'. $c["price_product"].' €</td>
-                    <td>'. $c["state_product"].'</td>
+                    <td><a href="?page=product&categorie=' . $c["categorie_product"] . '&product=' . $id . '" style="">' . tronque($c["name_product"], 15) . '</a></td>
+                    <td>' . tronque($c["author_product"], 15) . '</td>
+                    <td>' . whatCategory($c["categorie_product"]) . '</td>
+                    <td>' . $c["price_product"] . ' €</td>
+                    <td>' . $c["state_product"] . '</td>
                     <td>??</td>
                     <td><form action="">
                             <input type="number" name="quantite" value="' . $value . '" id="">
                             <button type="button" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit"></i></button>
                         </form></td>
-                    <td>200 €</td>
+                    <td>' . $c["price_product"] * $value . ' €</td>
 
 
 
