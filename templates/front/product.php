@@ -41,7 +41,7 @@ require "./templates/front/_nav.php";
                         <p class=\"card-text\"> Catégorie : " . $categorie . "</p>
                         <p class=\"card-text\">Ajouté le : " . $prod['dateadd'] . "</p>
                         <p class=\"card-text\">Stock : " . $prod['state_product'] . '</p>
-                       <a href=\'?page=orders&addcart=' . $prod['id_product'] . '\' class="btn btn-success"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
+                       <a href=\'?page=' . $_GET['page'] . '&categorie=' . $_GET['categorie'] . '&addcart=' . $prod['id_product'] . '\' class="btn btn-success"><i class="fas fa-cart-plus"></i> Ajouter au panier</a>
                        </div>
                 </div>
             </div>

@@ -14,6 +14,8 @@ $pdo = new database();
 $cart = new cart(database::$bdd);
 
 
+$_SESSION['panier']['id_product'] = null;
+
 //CATEGORY CONVERSION
 
 function whatCategory($cat)
@@ -186,7 +188,8 @@ if (isset($_GET['deconnexion'])) {
 }
 
 //ADD TO CART
-if (isset($_GET['addcart']) && isset($_GET['page'])) {
+if (isset($_GET['addcart'])) {
+
 
     if (!isset($_SESSION['name']) && !isset($_SESSION['user'])) {
         $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">

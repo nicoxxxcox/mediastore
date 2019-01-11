@@ -53,9 +53,8 @@ require "./templates/front/_nav.php";
                     <div class="card-body">
                     <h5 class="card-title font-weight-bold ">' . $prods["price_product"] . " €</h5>
                         <h5 class=\"card-title text-warning font-weight-bold\">" . $prods["name_product"] . '</h5>
-
                         <a href="?page=product&product=' . $prods["id_product"] . "&categorie=" . $prods["categorie_product"] . '" class="btn btn-primary mr-1">Voir produit</a>
-                        <a href="?page=orders&addcart=' . $prods["id_product"] . '" class="btn btn-success mr-1"><i class="fas fa-cart-plus"></i></a>
+                        <a href="?page='.$_GET['page'].'&categorie='.$_GET['categorie'].'&addcart=' . $prods["id_product"] . '" class="btn btn-success mr-1"><i class="fas fa-cart-plus"></i></a>
                         
                        
                     </div>

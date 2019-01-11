@@ -7,8 +7,6 @@ require "./templates/front/_nav.php";
 
 
         <p class="h2">Mon panier</p>
-
-
         <table class="table table-striped">
             <thead>
             <tr>
@@ -27,10 +25,14 @@ require "./templates/front/_nav.php";
             <tbody>
 
             <?php
-            foreach ($_SESSION['panier']['id_product'] as $id => $value) {
-                $cartAll = $cart->getInfos($id);
-                while ($c = $cartAll->fetch()) {
-                    echo '<tr>
+
+
+            if (!empty($_SESSION['panier'])) {
+                // Si le panier n'es pas vide, on l'affiche !
+                foreach ($_SESSION['panier']['id_product'] as $id => $value) {
+                    $cartAll = $cart->getInfos($id);
+                    while ($c = $cartAll->fetch()) {
+                        echo '<tr>
                     <td >' . $id . '</td>
                     <td><a href="?page=product&categorie=' . $c["categorie_product"] . '&product=' . $id . '" style="">' . tronque($c["name_product"], 15) . '</a></td>
                     <td>' . tronque($c["author_product"], 15) . '</td>
@@ -44,14 +46,28 @@ require "./templates/front/_nav.php";
                             <i class="fas fa-edit"></i></button>
                         </form></td>
                     <td>' . $c["price_product"] * $value . ' €</td>
-
-
-
                 </tr>';
+                    }
                 }
-
-
+            } else {
+                // Si le panier ($_SESSION) est vide on affiche un tableau vide à ue seule ligne
+                echo '<tr>
+                    <td > - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td><form action="">
+                            <input type="number" name="quantite" value=" - " id="">
+                            <button type="button" class="btn btn-primary btn-sm">
+                            <i class="fas fa-edit"></i></button>
+                        </form></td>
+                    <td> -  €</td>
+                </tr>';
             }
+
             ?>
             </tbody>
         </table>
