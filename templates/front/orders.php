@@ -1,5 +1,5 @@
 <?php
-require "./templates/front/_nav.php";
+include "./templates/front/_nav.php";
 ?>
 
 <div class="row">

@@ -1,7 +1,7 @@
 <?php
 
 
-require "./templates/front/_nav.php";
+include "./templates/front/_nav.php";
 ?>
 
     <div class="container py-5">
@@ -17,25 +17,25 @@ require "./templates/front/_nav.php";
                     <br>
                     <label for="inputEmail" class="">Adresse email</label>
                     <input type="email" name="emailsubs" id="inputEmail" class="form-control mb-2" placeholder="Adresse email"
-                           required="" autofocus="">
+                           included="" autofocus="">
                     <label for="inputEmail" class="">Nom</label>
                     <input type="text" name="lastnamesubs" id="inputName" class="form-control mb-2" placeholder="Nom"
-                           required="" autofocus="">
+                           included="" autofocus="">
 
                     <label for="inputEmail" class="">Prénom</label>
                     <input type="text" name="firstnamesubs" id="inputName" class="form-control mb-2" placeholder="Prénom"
-                           required="" autofocus="">
+                           included="" autofocus="">
 
                     <label for="inputPassword" class="">Mot de passe</label>
-                    <input type="password" name="passsubs" id="inputPassword" class="form-control mb-2" placeholder="Mot de passe" required="">
+                    <input type="password" name="passsubs" id="inputPassword" class="form-control mb-2" placeholder="Mot de passe" included="">
 
                     <label for="inputEmail" class="">Adresse</label>
                     <input type="text" name="adresssubs" id="inputAdress" class="form-control mb-2" placeholder="Adresse"
-                           required="" autofocus="">
+                           included="" autofocus="">
 
                     <label for="inputEmail" class="">Code postal</label>
                     <input type="text" name="postalsubs" id="inputAdress" class="form-control mb-2" placeholder="Code postal"
-                           required="" autofocus="">
+                           included="" autofocus="">
                     <button class="btn btn-lg btn-primary btn-block" type="submit">S'enregistrer</button>
                 </form>
 

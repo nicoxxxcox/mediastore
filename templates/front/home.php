@@ -1,7 +1,7 @@
 <?php
-//require_once "../_header.php";
+//include_once "../_header.php";
 
-require "./templates/front/_nav.php";
+include "./templates/front/_nav.php";
 
 ?>
 
@@ -31,7 +31,7 @@ require "./templates/front/_nav.php";
 
     <div class="row mt-5">
         <?php
-        require "_search.php";
+        include "_search.php";
         ?>
     </div>
 

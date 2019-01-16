@@ -1,12 +1,12 @@
 <?php
-require "./templates/front/_nav.php";
+include "./templates/front/_nav.php";
 ?>
 
 <div class="container py-5">
 
     <div class="row">
         <?php
-        require_once "_search.php";
+        include_once "_search.php";
         echo $usr->_firstname_user;
         ?>
     </div>

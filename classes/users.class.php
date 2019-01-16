@@ -6,8 +6,15 @@ class users
 
     public $_db;
 
-    public $_id_user;
-    public $_firstname_user;
+    private $_id_user;
+    private $_type_user;
+    private $_email_user;
+    private $_adress_user;
+    private $_postal_user;
+    private $_pass_user;
+    private $_firstname_user;
+    private $_lastname_user;
+    private $_guid_user;
 
 
     /**
@@ -21,6 +28,19 @@ class users
     }
 
 
+    public function hydrate($data)
+    {
+        foreach ($data as $key => $value) {
+            // On récupère le nom du setter correspondant à l'attribut.
+            $method = 'set' . ucfirst($key);
+            // Si le setter correspondant existe.
+            if (method_exists($this, $method)) {
+                // On appelle le setter.
+                $this->$method($value);
+            }
+        }
+    }
+
     /**
      * @param $name
      * @return mixed
@@ -31,6 +51,151 @@ class users
         return $this->$name;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIdUser()
+    {
+        return $this->_id_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdressUser()
+    {
+        return $this->_adress_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypeUser()
+    {
+        return $this->_type_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmailUser()
+    {
+        return $this->_email_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostalUser()
+    {
+        return $this->_postal_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassUser()
+    {
+        return $this->_pass_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstnameUser()
+    {
+        return $this->_firstname_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastnameUser()
+    {
+        return $this->_lastname_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGuidUser()
+    {
+        return $this->_guid_user;
+    }
+
+    /**
+     * @param mixed $id_user
+     */
+    public function setId_user($id_user)
+    {
+        $this->_id_user = $id_user;
+    }
+
+
+    /**
+     * @param mixed $type_user
+     */
+    public function setType_user($type_user)
+    {
+        $this->_type_user = $type_user;
+    }
+
+
+    /**
+     * @param mixed $email_user
+     */
+    public function setEmail_user($email_user)
+    {
+        $this->_email_user = $email_user;
+    }
+
+    /**
+     * @param mixed $adress_user
+     */
+    public function setAdress_user($adress_user)
+    {
+        $this->_adress_user = $adress_user;
+    }
+
+    /**
+     * @param mixed $postal_user
+     */
+    public function setPostal_user($postal_user)
+    {
+        $this->_postal_user = $postal_user;
+    }
+
+    /**
+     * @param mixed $pass_user
+     */
+    public function setPass_user($pass_user)
+    {
+        $this->_pass_user = $pass_user;
+    }
+
+    /**
+     * @param mixed $firstname_user
+     */
+    public function setFirstname_user($firstname_user)
+    {
+        $this->_firstname_user = $firstname_user;
+    }
+
+    /**
+     * @param mixed $lastname_user
+     */
+    public function setLastname_user($lastname_user)
+    {
+        $this->_lastname_user = $lastname_user;
+    }
+
+    /**
+     * @param mixed $guid_user
+     */
+    public function setGuid_user($guid_user)
+    {
+        $this->_guid_user = $guid_user;
+    }
 
     public function setNewUser($userinfos)
     {
@@ -64,15 +229,18 @@ class users
         }
     }
 
-    public function getUser($name, $id)
+    public function getUser($guid)
     {
-        $infos = $this->_db->prepare('SELECT * FROM users WHERE id_user=:id and firstname_user=:name');
-        $infos->bindValue(':id', $id, PDO::PARAM_STR);
-        $infos->bindValue(':name', $name, PDO::PARAM_STR);
+/*
+        $infos = $this->_db->prepare('SELECT * FROM users WHERE guid_user=:guid');
+        $infos->bindValue(':guid', $guid, PDO::PARAM_STR);
         $infos->execute();
         while ($infosall = $infos->fetch(PDO::FETCH_ASSOC)) {
             return $infosall;
-        }
+        }*/
+
+        $infosall = $_SESSION['user'];
+        return $infosall;
     }
 
     public function setUser($form)
@@ -84,28 +252,21 @@ class users
         $mod->bindValue(':pass', password_hash($form['passmod'], PASSWORD_DEFAULT), PDO::PARAM_STR);
         $mod->bindValue(':firstname', $form['firstnamemod'], PDO::PARAM_STR);
         $mod->bindValue(':lastname', $form['lastnamemod'], PDO::PARAM_STR);
-
         $mod->execute();
-
         return TRUE;
     }
 
     public function getConnexion($infosconnect)
     {
-
-        $verif = $this->_db->prepare('SELECT id_user , email_user , pass_user , firstname_user  FROM users WHERE email_user=:email');
+        $verif = $this->_db->prepare('SELECT *  FROM users WHERE email_user=:email');
         $verif->bindValue(':email', $infosconnect['connexionemail'], PDO::PARAM_STR);
-
         $verif->execute();
-
         while ($check = $verif->fetch(PDO::FETCH_ASSOC)) {
             if (($check['email_user'] == $infosconnect['connexionemail']) && password_verify($check['pass_user'], $infosconnect['connexionpass'])) {
-
-                $this->_firstname_user = $check['firstname_user'];
-                $this->_id_user = $check['id_user'];
+                $this->hydrate($check[0]);
+                $_SESSION['user'] = $check[0];
 
                 return TRUE;
-
             } else {
                 return FALSE;
             }

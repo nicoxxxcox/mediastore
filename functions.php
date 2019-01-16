@@ -1,10 +1,10 @@
 <?php
-require_once __DIR__ . "/classes/database.class.php";
-require_once __DIR__ . "/classes/products.class.php";
-require_once __DIR__ . "/classes/users.class.php";
-require_once __DIR__ . "/classes/booksellers.class.php";
-require_once __DIR__ . "/classes/orders.class.php";
-require_once __DIR__ . "/classes/cart.class.php";
+include __DIR__ . "/classes/database.class.php";
+include __DIR__ . "/classes/products.class.php";
+include __DIR__ . "/classes/users.class.php";
+include __DIR__ . "/classes/booksellers.class.php";
+include __DIR__ . "/classes/orders.class.php";
+include __DIR__ . "/classes/cart.class.php";
 
 // bdd
 database::pdo();
@@ -112,9 +112,44 @@ if (isset($_POST['emailsubs']) && isset($_POST['lastnamesubs']) && isset($_POST[
     $usr->setNewUser($_POST);
 }
 
+//VERIFYUSER
+if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty($_POST['connexionemail']) && !empty($_POST['connexionpass'])) {
+    extract($_POST);
+    $verif = $usr->_db->prepare("SELECT * FROM users WHERE email_user= :mail ");
+    $verif->bindValue(':mail', $connexionemail, PDO::PARAM_STR);
+    $verif->execute();
+    $check = $verif->fetchAll();
+
+    if (!empty($check)) {
+        foreach ($check as $row) {
+            extract($row);
+            if (password_verify($connexionpass, $pass_user)) {
+                $usr->hydrate($check[0]);
+                $_SESSION['user'] = $check[0];
+
+                $messageUser = "<div class=\"alert alert-success shadow m-2\" role=\"alert\">
+                        Bienvenue sur Medi@Store " . $firstname_user . " 
+                    </div>";
+            } else {
+                $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
+                        Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
+                    </div>";
+                session_destroy();
+            }
+        }
+    } else {
+
+        $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
+                        Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
+                    </div>";
+        session_destroy();
+    }
+}
+
+
 //AFFICHE PROFILE
-if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['name']) && isset($_GET['user'])) {
-    $infosall = $usr->getUser($_GET['name'], $_GET['user']);
+if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['guid']) ) {
+    $infosall = $usr->getUser($_GET['guid']);
 }
 
 
@@ -130,45 +165,6 @@ if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['f
     $messageUser = "";
 }
 
-
-//VERIFYUSER
-if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty($_POST['connexionemail']) && !empty($_POST['connexionpass'])) {
-    extract($_POST);
-
-
-    $verif = $usr->_db->prepare("SELECT id_user , email_user , pass_user , firstname_user  FROM users WHERE email_user= :mail ");
-    $verif->bindValue(':mail', $connexionemail, PDO::PARAM_STR);
-
-    $verif->execute();
-    $check = $verif->fetchAll();
-
-
-    if (!empty($check)) {
-        foreach ($check as $row) {
-            extract($row);
-
-
-            if (password_verify($connexionpass, $pass_user)) {
-
-
-                $_SESSION['user'] = $id_user;
-                $_SESSION['name'] = $firstname_user;
-                $messageUser = "<div class=\"alert alert-success shadow m-2\" role=\"alert\">
-                        Bienvenue sur Medi@Store " . $firstname_user . " 
-                    </div>";
-            } else {
-                $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
-                        Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
-                    </div>";
-            }
-        }
-    } else {
-
-        $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
-                        Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
-                    </div>";
-    }
-}
 
 //DECONNEXION
 if (isset($_POST['deconnexion'])) {
@@ -189,8 +185,6 @@ if (isset($_GET['deconnexion'])) {
 
 //ADD TO CART
 if (isset($_GET['addcart'])) {
-
-
     if (!isset($_SESSION['name']) && !isset($_SESSION['user'])) {
         $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
                        Vous devez être connecté pour ajouter un produit au panier !

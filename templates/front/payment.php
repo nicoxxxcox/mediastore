@@ -1,6 +1,6 @@
 <?php
 
-require "./templates/front/_nav.php";
+include "./templates/front/_nav.php";
 ?>
 
 
@@ -27,7 +27,7 @@ require "./templates/front/_nav.php";
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="username" placeholder="" required="">
+                                <input type="text" class="form-control" name="username" placeholder="" included="">
                             </div> <!-- input-group.// -->
                         </div> <!-- form-group.// -->
 
@@ -64,7 +64,7 @@ require "./templates/front/_nav.php";
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
-                                    <input class="form-control" required="" type="text">
+                                    <input class="form-control" included="" type="text">
                                 </div> <!-- form-group.// -->
                             </div>
                         </div> <!-- row.// -->

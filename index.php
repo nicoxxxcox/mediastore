@@ -3,8 +3,6 @@ session_start();
 require "./functions.php";
 require __DIR__ . "/templates/_header.php";
 
-
-
 /*
 if (isset($_GET["page"]) && $_GET['page'] == "product") {
     require __DIR__ . "/templates/front/product.php";
