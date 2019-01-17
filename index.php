@@ -2,12 +2,12 @@
 session_start();
 
 // On enregistre notre autoload.
-function chargerClasse($classname){
-    require 'classes/' . $classname.'.class.php';
+function loadClass($classname){
+    require __DIR__ . '/classes/' . $classname.'.class.php';
 }
-spl_autoload_register('chargerClasse');
+spl_autoload_register('loadClass');
 
-include "./functions.php";
+include __DIR__ . "/functions.php";
 include __DIR__ . "/templates/_header.php";
 
 if (isset($_GET["page"])) {
