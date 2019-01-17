@@ -3,7 +3,8 @@
 // bdd
 //on instancie une connexion à la bdd avec la fonction pdo()
 database::pdo();
-$prod = new products(database::$bdd);
+$userMan = new userManager(database::$bdd);
+$prod = new product(database::$bdd);
 $usr = new user(database::$bdd);
 $pdo = new database();
 $cart = new cart(database::$bdd);
@@ -16,16 +17,19 @@ $_SESSION['panier']['id_product'] = null;
 function whatCategory($cat)
 {
     $categorie = "";
-    switch ($cat) {
-        case 0 :
-            $categorie = "Autre";
-            break;
-        case 1 :
-            $categorie = "CD";
-            break;
-        case 2 :
-            $categorie = "DVD";
-            break;
+    // si $cat est un entier
+    if (is_int($cat)) {
+        switch ($cat) {
+            case 0 :
+                $categorie = "Autre";
+                break;
+            case 1 :
+                $categorie = "CD";
+                break;
+            case 2 :
+                $categorie = "DVD";
+                break;
+        }
     }
 }
 
@@ -107,13 +111,13 @@ if (isset($_POST['emailsubs']) && isset($_POST['lastnamesubs']) && isset($_POST[
     $usr->setNewUser($_POST);
 }
 
-//VERIFYUSER
+//VERIFYUSER IN DB
+
+
+
 if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty($_POST['connexionemail']) && !empty($_POST['connexionpass'])) {
-    extract($_POST);
-    $verif = $usr->_db->prepare("SELECT * FROM users WHERE email_user= :mail ");
-    $verif->bindValue(':mail', $connexionemail, PDO::PARAM_STR);
-    $verif->execute();
-    $check = $verif->fetchAll();
+
+    $check = $userMan->validateUser($_POST);
 
     if (!empty($check)) {
         foreach ($check as $row) {
@@ -133,24 +137,22 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
             }
         }
     } else {
-
         $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
                         Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
                     </div>";
-
     }
 }
 
 
 //AFFICHE PROFILE
-if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['guid']) ) {
+if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['guid'])) {
     $infosall = $usr->getUser($_GET['guid']);
 }
 
 
 //MOD PROFILE
 if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
-    if($_POST['passmod'] == $infosall['pass_user']){
+    if ($_POST['passmod'] == $infosall['pass_user']) {
         echo "hello";
     }
     $usr->setUser($_POST);

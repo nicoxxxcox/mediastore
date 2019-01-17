@@ -1,7 +1,5 @@
 <?php
-
-include "inc/config.php";
-
+include FILEPATH . "/inc/config.php";
 class database
 {
     /*

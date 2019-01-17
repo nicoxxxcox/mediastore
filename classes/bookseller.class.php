@@ -1,5 +1,5 @@
 <?php
-class booksellers
+class bookseller
 {
 
 }

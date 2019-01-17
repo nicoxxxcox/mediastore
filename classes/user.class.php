@@ -1,6 +1,6 @@
 <?php
 
-class users
+class user
 {
 
 
@@ -126,7 +126,7 @@ class users
     /**
      * @param mixed $id_user
      */
-    public function setId_user($id_user)
+    public function setIdUser($id_user)
     {
         $this->_id_user = $id_user;
     }
@@ -135,7 +135,7 @@ class users
     /**
      * @param mixed $type_user
      */
-    public function setType_user($type_user)
+    public function setTypeUser($type_user)
     {
         $this->_type_user = $type_user;
     }
@@ -144,7 +144,7 @@ class users
     /**
      * @param mixed $email_user
      */
-    public function setEmail_user($email_user)
+    public function setEmailUser($email_user)
     {
         $this->_email_user = $email_user;
     }
@@ -152,7 +152,7 @@ class users
     /**
      * @param mixed $adress_user
      */
-    public function setAdress_user($adress_user)
+    public function setAdressUser($adress_user)
     {
         $this->_adress_user = $adress_user;
     }
@@ -160,7 +160,7 @@ class users
     /**
      * @param mixed $postal_user
      */
-    public function setPostal_user($postal_user)
+    public function setPostalUser($postal_user)
     {
         $this->_postal_user = $postal_user;
     }
@@ -168,7 +168,7 @@ class users
     /**
      * @param mixed $pass_user
      */
-    public function setPass_user($pass_user)
+    public function setPassUser($pass_user)
     {
         $this->_pass_user = $pass_user;
     }
@@ -176,7 +176,7 @@ class users
     /**
      * @param mixed $firstname_user
      */
-    public function setFirstname_user($firstname_user)
+    public function setFirstnameUser($firstname_user)
     {
         $this->_firstname_user = $firstname_user;
     }
@@ -184,7 +184,7 @@ class users
     /**
      * @param mixed $lastname_user
      */
-    public function setLastname_user($lastname_user)
+    public function setLastnameUser($lastname_user)
     {
         $this->_lastname_user = $lastname_user;
     }
@@ -192,7 +192,7 @@ class users
     /**
      * @param mixed $guid_user
      */
-    public function setGuid_user($guid_user)
+    public function setGuidUser($guid_user)
     {
         $this->_guid_user = $guid_user;
     }
