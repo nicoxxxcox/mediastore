@@ -4,7 +4,7 @@
 //on instancie une connexion à la bdd avec la fonction pdo()
 database::pdo();
 $prod = new products(database::$bdd);
-$usr = new users(database::$bdd);
+$usr = new user(database::$bdd);
 $pdo = new database();
 $cart = new cart(database::$bdd);
 
