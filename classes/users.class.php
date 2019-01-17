@@ -245,11 +245,13 @@ class users
 
     public function setUser($form)
     {
-        $mod = $this->_db->prepare('UPDATE users SET  email_user = :email , adress_user = :adress , postal_user = :postal , pass_user = :pass, firstname_user = :firstname , lastname_user = :lastname ');
+        $mod = $this->_db->prepare('UPDATE users SET  email_user = :email , adress_user = :adress , postal_user = :postal , pass_user = :pass, firstname_user = :firstname , lastname_user = :lastname WHERE email_user = :email');
         $mod->bindValue(':email', $form['emailmod'], PDO::PARAM_STR);
         $mod->bindValue(':adress', $form['adressmod'], PDO::PARAM_STR);
         $mod->bindValue(':postal', $form['postalmod'], PDO::PARAM_STR);
+
         $mod->bindValue(':pass', password_hash($form['passmod'], PASSWORD_DEFAULT), PDO::PARAM_STR);
+
         $mod->bindValue(':firstname', $form['firstnamemod'], PDO::PARAM_STR);
         $mod->bindValue(':lastname', $form['lastnamemod'], PDO::PARAM_STR);
         $mod->execute();

@@ -1,12 +1,7 @@
 <?php
-include __DIR__ . "/classes/database.class.php";
-include __DIR__ . "/classes/products.class.php";
-include __DIR__ . "/classes/users.class.php";
-include __DIR__ . "/classes/booksellers.class.php";
-include __DIR__ . "/classes/orders.class.php";
-include __DIR__ . "/classes/cart.class.php";
 
 // bdd
+//on instancie une connexion à la bdd avec la fonction pdo()
 database::pdo();
 $prod = new products(database::$bdd);
 $usr = new users(database::$bdd);
@@ -134,7 +129,7 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
                 $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
                         Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
                     </div>";
-                session_destroy();
+
             }
         }
     } else {
@@ -142,7 +137,7 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
         $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
                         Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
                     </div>";
-        session_destroy();
+
     }
 }
 
@@ -155,12 +150,15 @@ if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['guid']) )
 
 //MOD PROFILE
 if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
+    if($_POST['passmod'] == $infosall['pass_user']){
+        echo "hello";
+    }
     $usr->setUser($_POST);
 
     $messageUser = "<div class=\"alert alert-primary shadow m-2\" role=\"alert\">
                         Votre profil à bien été modifié !
                     </div>";
-    header("location:index.php?page=profile&name=" . $_POST['firstnamemod'] . "&user=" . $_POST['idmod']);
+    header("location:index.php?page=profile&guid=" . $_SESSION['user']['guid_user']);
 } else {
     $messageUser = "";
 }
