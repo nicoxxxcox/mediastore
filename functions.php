@@ -6,9 +6,9 @@
 
 //on instancie une connexion à la bdd avec la fonction pdo()
 database::pdo();
-$prod = new products(database::$bdd);
+$prod = new product(database::$bdd);
 $usrMan = new userManager(database::$bdd);
-$usr = new users(database::$bdd);
+$usr = new user(database::$bdd);
 $pdo = new database();
 $cart = new cart(database::$bdd);
 
@@ -143,8 +143,8 @@ if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty(
 
 
 //AFFICHE PROFILE
-if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['guid'])) {
-    $infosall = $usr->getUser($_GET['guid']);
+if (isset($_GET['page']) && $_GET['page'] == "profile") {
+    $infosall = $_SESSION['user'];
 }
 
 
