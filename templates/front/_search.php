@@ -1,7 +1,7 @@
 <div class="card col-sm-12 bg-light  shadow-lg">
     <div class="card-body ">
 
-        <form class="mb-4" action="functions.php" method="get">
+        <form class="mb-4" action="index.php" method="GET">
 
             <div class="form-group">
                 <p class="h2 mb-3">Recherchez un produit</p>

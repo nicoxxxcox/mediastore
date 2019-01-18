@@ -6,3 +6,6 @@ DEFINE('DB_NAME','mediastore');
 DEFINE('DB_USER','root');
 DEFINE('DB_PASSWORD','');
 
+// Config Messages
+DEFINE('MESSAGE_WELCOME','Bienvenue sur Medi@Store !');
+DEFINE('MESSAGE_ERRLOG','Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)');

@@ -1,13 +1,20 @@
 <?php
 
-// bdd
+//#######################
+//### BDD : BEGIN ###
+//#######################
+
 //on instancie une connexion à la bdd avec la fonction pdo()
 database::pdo();
 $prod = new products(database::$bdd);
+$usrMan = new userManager(database::$bdd);
 $usr = new users(database::$bdd);
 $pdo = new database();
 $cart = new cart(database::$bdd);
 
+//#######################
+//### BDD : END ###
+//#######################
 
 $_SESSION['panier']['id_product'] = null;
 
@@ -66,21 +73,21 @@ function gen_uuid()
 // Code proposé par Le Caphar http://www.lepotlatch.org
 function tronque($chaine, $longueur = 120)
 {
-
     if (empty ($chaine)) {
         return "";
     } elseif (strlen($chaine) < $longueur) {
         return $chaine;
-    } /*elseif (preg_match("/(.{1,$longueur})\s./ms", $chaine, $match))
-    {
-        return $match [1] . "...";
-    }*/ else {
+    } else {
         $str = substr($chaine, 0, $longueur - strlen("...") + 1);
         //return substr($str,0,strrpos($str,' '))."...";
 
         return substr($chaine, 0, $longueur) . "...";
     }
 }
+
+//#######################
+//### PRODUCT : BEGIN ###
+//#######################
 
 //ALLPRODUCTS FRONT
 if (isset($_GET["categorie"])) {
@@ -90,67 +97,60 @@ if (isset($_GET["categorie"])) {
 
 //SEARCHPRODUCTS FRONT
 if (isset($_GET["searchprods"])) {
-
     header("location:index.php?page=search&s=" . $_GET["searchprods"]);
 }
 
 //PRODUCT FRONT
 if (isset($_GET["product"])) {
-    $product = $_GET["product"];
-    $prod->getProduct($product);
+    $prod->getProduct($_GET["product"]);
 }
+
+//#######################
+//### PRODUCT : END ###
+//#######################
+
+//#######################
+//### USER : BEGIN ###
+//#######################
 
 
 //SUBSCRIBE NEW USER
 if (isset($_POST['emailsubs']) && isset($_POST['lastnamesubs']) && isset($_POST['firstnamesubs']) && isset($_POST['postalsubs']) && isset($_POST['passsubs']) && isset($_POST['adresssubs'])) {
-
     $usr->setNewUser($_POST);
 }
 
 //VERIFYUSER
 if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty($_POST['connexionemail']) && !empty($_POST['connexionpass'])) {
-    extract($_POST);
-    $verif = $usr->_db->prepare("SELECT * FROM users WHERE email_user= :mail ");
-    $verif->bindValue(':mail', $connexionemail, PDO::PARAM_STR);
-    $verif->execute();
-    $check = $verif->fetchAll();
+    // On vérifie si l'email et le mot de passe sont dans la bdd
+    if ($usrMan->validateUser($_POST)) {
 
-    if (!empty($check)) {
-        foreach ($check as $row) {
-            extract($row);
-            if (password_verify($connexionpass, $pass_user)) {
-                $usr->hydrate($check[0]);
-                $_SESSION['user'] = $check[0];
+        // Si oui , on récupère les infos de l'utilisateur avec l'email
+        $infos = $usrMan->getUserInfo($_POST);
 
-                $messageUser = "<div class=\"alert alert-success shadow m-2\" role=\"alert\">
-                        Bienvenue sur Medi@Store " . $firstname_user . " 
-                    </div>";
-            } else {
-                $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
-                        Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
-                    </div>";
+        // On hydrate les propriétés de l'objet user
+        $usr->hydrate($infos[0]);
 
-            }
-        }
+        // On Utilise la SESSION pour sauver les infos de l'utilisateur
+        $_SESSION['user'] = $infos[0];
+
+        // On affiche un message de success
+        $messageUser = '<div class="alert alert-success shadow m-2" role="alert">' . MESSAGE_WELCOME . '</div>';
     } else {
-
-        $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
-                        Mot de passe ou email incorrect !! réesayez ou incrivez vous :-)
-                    </div>";
-
+        // On affiche un message d'erreur
+        $messageUser = '<div class="alert alert-danger shadow m-2" role="alert">' . MESSAGE_ERRLOG . '</div>';
     }
 }
 
 
 //AFFICHE PROFILE
-if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['guid']) ) {
+if (isset($_GET['page']) && $_GET['page'] == "profile" && isset($_GET['guid'])) {
     $infosall = $usr->getUser($_GET['guid']);
 }
 
 
 //MOD PROFILE
 if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
-    if($_POST['passmod'] == $infosall['pass_user']){
+    if ($_POST['passmod'] == $infosall['pass_user']) {
         echo "hello";
     }
     $usr->setUser($_POST);
@@ -180,6 +180,14 @@ if (isset($_GET['deconnexion'])) {
                     </div>";
     }
 }
+
+//#######################
+//### USER : END ###
+//#######################
+
+//#######################
+//### CART : BEGIN ###
+//#######################
 
 //ADD TO CART
 if (isset($_GET['addcart'])) {
@@ -214,6 +222,9 @@ if (isset($_GET['page']) && $_GET['page'] == 'orders') {
     }
 }
 
+//#######################
+//### USER : END ###
+//#######################
 
 
 

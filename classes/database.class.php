@@ -1,7 +1,4 @@
 <?php
-
-include "inc/config.php";
-
 class database
 {
     /*
