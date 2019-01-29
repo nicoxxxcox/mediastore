@@ -78,7 +78,7 @@ function tronque($chaine, $longueur = 120)
     } elseif (strlen($chaine) < $longueur) {
         return $chaine;
     } else {
-        $str = substr($chaine, 0, $longueur - strlen("...") + 1);
+        $str = substr($chaine, 0, $longueur - strlen(" ...") + 1);
         //return substr($str,0,strrpos($str,' '))."...";
 
         return substr($chaine, 0, $longueur) . "...";
