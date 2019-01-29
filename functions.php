@@ -199,6 +199,7 @@ if (isset($_GET['deconnexion'])) {
 
 //ADD TO CART
 if (isset($_GET['addcart'])) {
+    // Si l'utilsateur n'est pas connecté
     if (!isset($_SESSION['name']) && !isset($_SESSION['user'])) {
         $messageUser = "<div class=\"alert alert-danger shadow m-2\" role=\"alert\">
                        Vous devez être connecté pour ajouter un produit au panier !
