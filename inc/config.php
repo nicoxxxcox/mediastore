@@ -1,4 +1,7 @@
 <?php
+//Config REALPATH
+define('PATH_RACINE_CONFIG', "http://".$_SERVER["HTTP_HOST"].'/mediastore');
+
 // Config DSN
 DEFINE('DB_HOST','local');
 DEFINE('DB_NAME','mediastore');
