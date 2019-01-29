@@ -1,10 +1,7 @@
 <?php
 
 if (!empty($_SESSION['user'])) {
-
-
-
-    $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profile&guid=" . $usr->_guid_user ."\"><i class=\"fas fa-user\"></i> " . $_SESSION['user']['firstname_user'] . "</a></div>
+    $nav = "<div class=\"useraccount mx-4 \"><a href=\"index.php?page=profile&guid=" . $_SESSION['user']['guid_user'] . "\"><i class=\"fas fa-user\"></i> " . $_SESSION['user']['firstname_user'] . "</a></div>
             <div class=\"useraccount mx-2 \"><a href=\"index.php?page=orders\"> <button class=\"btn btn-sm btn-primary my-2 my-sm-0\"><i class=\"fas fa-shopping-cart\"></i>  Panier</button></a></div>
             <form class=\"form-inline my-2 my-lg-0\" action='index.php' method='POST'>
                 <input class=\"form-control mr-sm-2\" type=\"number\" name=\"deconnexion\" hidden value='1' >
@@ -23,8 +20,8 @@ if (!empty($_SESSION['user'])) {
 
 ?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning shadow">
-        <a class="navbar-brand" href="?page=products&categorie=2"><img src="../../assets/img/logo.svg" width="150"
-                                                                       alt=""></a>
+        <a class="navbar-brand" href="?page=products&categorie=2">
+            <img src="../../assets/img/logo.svg" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,9 +39,7 @@ if (!empty($_SESSION['user'])) {
                 </li>
             </ul>
             <?php
-
             echo $nav;
-
             ?>
         </div>
     </nav>
@@ -52,9 +47,6 @@ if (!empty($_SESSION['user'])) {
 
 // ICI ON AFFICHE LE MESSAGE
 if (isset($messageUser)) {
-    echo
-    "<div class='container ' > <div class='col '>" .
-    $messageUser
-    . "</div></div>" ;
+    echo "<div class='container ' > <div class='col '>" . $messageUser . "</div></div>";
 }
 ?>

@@ -85,6 +85,10 @@ function tronque($chaine, $longueur = 120)
     }
 }
 
+// Affiche les messages
+//isset($_GET['message']) ? $_GET['message'] = $messageUser : $messageUser =  '';
+
+
 //#######################
 //### PRODUCT : BEGIN ###
 //#######################
@@ -122,16 +126,18 @@ if (isset($_POST['emailsubs']) && isset($_POST['lastnamesubs']) && isset($_POST[
 //VERIFYUSER
 if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty($_POST['connexionemail']) && !empty($_POST['connexionpass'])) {
     // On vérifie si l'email et le mot de passe sont dans la bdd
+    var_dump($usrMan->validateUser($_POST));
     if ($usrMan->validateUser($_POST)) {
 
         // Si oui , on récupère les infos de l'utilisateur avec l'email
         $infos = $usrMan->getUserInfo($_POST);
 
-        // On hydrate les propriétés de l'objet user
-        $usr->hydrate($infos[0]);
-
         // On Utilise la SESSION pour sauver les infos de l'utilisateur
         $_SESSION['user'] = $infos[0];
+
+
+        // On hydrate les propriétés de l'objet user
+        $usr->hydrate($infos[0]);
 
         // On affiche un message de success
         $messageUser = '<div class="alert alert-success shadow m-2" role="alert">' . MESSAGE_WELCOME . '</div>';
@@ -148,19 +154,21 @@ if (isset($_GET['page']) && $_GET['page'] == "profile") {
 }
 
 
-//MOD PROFILE
-if (isset($_POST['emailmod']) || isset($_POST['lastnamemod']) || isset($_POST['firstnamemod']) || isset($_POST['passmod']) || isset($_POST['adressmod']) || isset($_POST['postalmod'])) {
-    if ($_POST['passmod'] == $infosall['pass_user']) {
-        echo "hello";
-    }
-    $usr->setUser($_POST);
 
-    $messageUser = "<div class=\"alert alert-primary shadow m-2\" role=\"alert\">
-                        Votre profil à bien été modifié !
-                    </div>";
-    header("location:index.php?page=profile&guid=" . $_SESSION['user']['guid_user']);
+
+//MOD PROFILE
+if (isset($_POST['email_user_user']) || isset($_POST['lastname_user']) || isset($_POST['firstname_user']) || isset($_POST['adress_user']) || isset($_POST['postal_user'])) {
+    // On met à jour le/les info(s) utilisateur avec ce que l'on recoit dans $_POST
+    $usr->setUser($_POST);
+    // On met à jour la $_SESSION['user'] avec les nouvelles infos
+    $_SESSION['user'] = $_POST;
+
+    $messageUser = '<div class="alert alert-primary shadow m-2" role="alert">
+                        ' . MESSAGE_USER_MOD_SUCCESS . '
+                    </div>';
+    header("location:index.php?page=profile&guid=" . $_SESSION['user']['guid_user'] . "&message=" . MESSAGE_USER_MOD_SUCCESS );
 } else {
-    $messageUser = "";
+    $messageUser =  "";
 }
 
 
