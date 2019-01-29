@@ -29,7 +29,7 @@ include "./templates/front/_nav.php";
         while ($prods = $res->fetch(PDO::FETCH_ASSOC)) {
             //si l'image n'est pas définie
             if (!isset($prods["url_product"])) {
-                $prods["url_product"] = "https://via.placeholder.com/300";
+                $prods["url_product"] = "https://via.placeholder.com/253x151";
             }
 
             echo '<div class="col-sm-3 my-4">
@@ -37,8 +37,8 @@ include "./templates/front/_nav.php";
                     <div class="card-header font-weight-bold">
                        ' . tronque($prods["author_product"], 20) . '
                     </div>
-                    <a href="?page=product&product=' . $prods['id_product'] . "&categorie=" . $prods["categorie_product"] . "\" >
-                        <img class=\"card-img-top\" src='" . $prods["url_product"] . '\' width="253" height="151" alt="Card image cap" style="object-fit: cover">
+                    <a href="?page=product&product=' . $prods['id_product'] . "&categorie=" . $prods["categorie_product"] . '" >
+                        <img class="card-img-top" src="'. PATH_RACINE_CONFIG .'/assets/img/thumb.png" width="253" height="151" alt="Card image cap" style="background-size: cover;background-image: url(' . $prods["url_product"] .'); ">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold ">' . $prods["price_product"] . " €</h5>
