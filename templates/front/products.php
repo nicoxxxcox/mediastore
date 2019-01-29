@@ -24,8 +24,6 @@ include "./templates/front/_nav.php";
         } else {
             $cat = 2;
         }
-
-
         // boucle d'affichage des produits
         $res = $prod->getProducts($cat);
         while ($prods = $res->fetch(PDO::FETCH_ASSOC)) {
@@ -33,7 +31,6 @@ include "./templates/front/_nav.php";
             if (!isset($prods["url_product"])) {
                 $prods["url_product"] = "https://via.placeholder.com/300";
             }
-
 
             echo '<div class="col-sm-3 my-4">
                 <div class="card text-center shadow">
