@@ -10,13 +10,14 @@ $prod = new product(database::$bdd);
 $usrMan = new userManager(database::$bdd);
 $usr = new user(database::$bdd);
 $pdo = new database();
+//on instancie un objet qui représente le panier
 $cart = new cart(database::$bdd);
 
 //#######################
 //### BDD : END ###
 //#######################
 
-$_SESSION['panier']['id_product'] = null;
+
 
 //CATEGORY CONVERSION
 
@@ -34,6 +35,7 @@ function whatCategory($cat)
             $categorie = "DVD";
             break;
     }
+    return $categorie;
 }
 
 $categorie = "DVD";
@@ -126,7 +128,6 @@ if (isset($_POST['emailsubs']) && isset($_POST['lastnamesubs']) && isset($_POST[
 //VERIFYUSER
 if (isset($_POST['connexionemail']) && isset($_POST['connexionpass']) && !empty($_POST['connexionemail']) && !empty($_POST['connexionpass'])) {
     // On vérifie si l'email et le mot de passe sont dans la bdd
-    var_dump($usrMan->validateUser($_POST));
     if ($usrMan->validateUser($_POST)) {
 
         // Si oui , on récupère les infos de l'utilisateur avec l'email
@@ -206,14 +207,18 @@ if (isset($_GET['addcart'])) {
                     </div>";
         session_destroy();
     } else {
+
+
         $exist = $cart->productExist($_GET['addcart']);
+
         if ($exist == false) {
             $messageUser = '<div class="alert alert-danger shadow m-2" role="alert">
                        Le produit selectionné n\'existe pas !
                     </div>';
         } else {
-            $_SESSION['panier']['id_product'];
+
             $cart->add($_GET['addcart']);
+
             $messageUser = "<div class=\"alert alert-success shadow m-2\" role=\"alert\">
                         Vous avez bien ajouté l'article au panier !
                     </div>";
@@ -229,6 +234,8 @@ if (isset($_GET['page']) && $_GET['page'] == 'orders') {
                       Le pannier est vide
                     </div>';
     }
+
+
 }
 
 //#######################

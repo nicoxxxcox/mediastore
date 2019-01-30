@@ -14,12 +14,14 @@ class cart
     public function __construct($db)
     {
         $this->_db = $db;
+
         if (!isset($_SESSION)) {
             session_start();
         }
         if (!isset($_SESSION['panier'])) {
             $_SESSION['panier'] = array();
         }
+
     }
 
     /**
@@ -34,13 +36,17 @@ class cart
 
     public function add($id_product)
     {
-        // si l'index de session du produit n'existe pas on le créé sinon erreur php
-        if(!isset($_SESSION['panier']['id_product'][$id_product])){
-        $_SESSION['panier']['id_product'][$id_product];
-    }
+        // Si l'index de notre produit n'existe pas, on le crée pour eviter une erreur
+        if (!isset($_SESSION['panier'][$id_product])) {
+            $_SESSION['panier'][$id_product] = 0;
+        }
 
-        $_SESSION['panier']['id_product'][$id_product] += 1;
+        // On ajoute 1
+        $_SESSION['panier'][$id_product]++;
+
+        // On enregistre
         $this->_cart = $_SESSION['panier'];
+
 
     }
 

@@ -21,7 +21,7 @@ if (!empty($_SESSION['user'])) {
 ?>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning shadow">
         <a class="navbar-brand" href="?page=products&categorie=2">
-            <img src="../../assets/img/logo.svg" alt=""></a>
+            <img src="<?= PATH_RACINE_CONFIG ?>/assets/img/logo.svg" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
