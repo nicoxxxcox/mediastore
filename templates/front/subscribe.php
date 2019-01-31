@@ -10,31 +10,31 @@ include "./templates/front/_nav.php";
             <div class="col-sm-6 mx-auto my-5 pb-5">
                 <form class="form-signin p-3 " method="POST" action="index.php">
 
-                    <img class="mb-4 mx-auto d-block" src="../../assets/img/logo.svg" alt="" width="200" height="">
+                    <img class="mb-4 mx-auto d-block" src="<?=PATH_RACINE_CONFIG ?>/assets/img/logo.svg" alt="" width="200" height="">
                     <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
                     <small>Tous les champs sont obligatoires</small>
                     <br>
                     <br>
                     <label for="inputEmail" class="">Adresse email</label>
-                    <input type="email" name="emailsubs" id="inputEmail" class="form-control mb-2" placeholder="Adresse email"
+                    <input type="email" name="emailsubs" class="form-control mb-2" placeholder="Adresse email"
                            included="" autofocus="">
                     <label for="inputEmail" class="">Nom</label>
-                    <input type="text" name="lastnamesubs" id="inputName" class="form-control mb-2" placeholder="Nom"
+                    <input type="text" name="lastnamesubs"  class="form-control mb-2" placeholder="Nom"
                            included="" autofocus="">
 
                     <label for="inputEmail" class="">Prénom</label>
-                    <input type="text" name="firstnamesubs" id="inputName" class="form-control mb-2" placeholder="Prénom"
+                    <input type="text" name="firstnamesubs"  class="form-control mb-2" placeholder="Prénom"
                            included="" autofocus="">
 
                     <label for="inputPassword" class="">Mot de passe</label>
-                    <input type="password" name="passsubs" id="inputPassword" class="form-control mb-2" placeholder="Mot de passe" included="">
+                    <input type="password" name="passsubs"  class="form-control mb-2" placeholder="Mot de passe" included="">
 
                     <label for="inputEmail" class="">Adresse</label>
-                    <input type="text" name="adresssubs" id="inputAdress" class="form-control mb-2" placeholder="Adresse"
+                    <input type="text" name="adresssubs" class="form-control mb-2" placeholder="Adresse"
                            included="" autofocus="">
 
                     <label for="inputEmail" class="">Code postal</label>
-                    <input type="text" name="postalsubs" id="inputAdress" class="form-control mb-2" placeholder="Code postal"
+                    <input type="text" name="postalsubs"  class="form-control mb-2" placeholder="Code postal"
                            included="" autofocus="">
                     <button class="btn btn-lg btn-primary btn-block" type="submit">S'enregistrer</button>
                 </form>

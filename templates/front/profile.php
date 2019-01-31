@@ -10,7 +10,7 @@ echo '
             <div class="btn btn-secondary"><a href="' . $_SERVER['HTTP_REFERER'] . '" class="text-light"><i class="fas fa-arrow-alt-circle-left"></i> Retour </a> </div>
             <form class="form-signin p-3 " method="post" action="index.php" >
             <!-- $infosall = $_SESSION["user"] -->
-                <img class="mb-4 mx-auto d-block" src="assets/img/logo.svg" width="200">
+                <img class="mb-4 mx-auto d-block" src="'.PATH_RACINE_CONFIG.'/assets/img/logo.svg" width="200">
                 <h1 class="h3 mb-3 font-weight-normal">Mes informations</h1>
                 <label for="inputEmail" class="">Adresse email</label>
                 <input type="email" name="email_user"  class="form-control text-primary mb-2" placeholder="Adresse email"
