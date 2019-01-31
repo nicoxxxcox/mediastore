@@ -10,7 +10,7 @@ include "./templates/front/_nav.php";
             <div class="col-sm-6 mx-auto my-5 pb-5">
                 <form class="form-signin p-3 " method="POST" action="index.php">
 
-                    <img class="mb-4 mx-auto d-block" src="<?=PATH_RACINE_CONFIG ?>/assets/img/logo.svg" alt="" width="200" height="">
+                    <img class="mb-4 mx-auto d-block" src="<?php echoPATH_RACINE_CONFIG ?>/assets/img/logo.svg" alt="" width="200" height="">
                     <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
                     <small>Tous les champs sont obligatoires</small>
                     <br>

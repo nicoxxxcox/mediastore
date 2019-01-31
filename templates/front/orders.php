@@ -1,5 +1,10 @@
 <?php
 include "./templates/front/_nav.php";
+
+// On génère le sous-total
+if (!isset($subtotal)) {
+    $subtotal = 0;
+}
 ?>
 
 <div class="row">
@@ -60,7 +65,7 @@ include "./templates/front/_nav.php";
                             <td class="text-center">' . $c['price_product'] . ' €</td>
                             <td class="text-center">' . $c['state_product'] . '</td>
                             <td class="text-center">??</td>
-                            <td class="text-center"  >
+                            <td class="text-center">
                                 <form >
                                     <input type="text"  name="quantite" value="' . $value . '" >
                                     <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button>
@@ -68,10 +73,8 @@ include "./templates/front/_nav.php";
                             </td>
                             <td class="text-center">' . $c['price_product'] * $value . ' €</td>
                         </tr>';
-                    // On génère le sous-total
-                    if (!isset($subtotal)) {
-                        $subtotal = 0;
-                    }
+
+                    // On incrémente $subtotal pour chaques lignes
                     $subtotal += ($c["price_product"] * $value);
                 }
             }
@@ -82,7 +85,7 @@ include "./templates/front/_nav.php";
 
         <div class="card mb-3 text-center bg-warning">
             <div class="card-body">
-               <h4 class="font-weight-bold"> Total de votre commande : <?= $subtotal ?> €</h4>
+               <h4 class="font-weight-bold"> Total de votre commande : <?php echo $subtotal ?> €</h4>
             </div>
         </div>
 
