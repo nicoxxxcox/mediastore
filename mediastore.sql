@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 11 jan. 2019 à 13:27
+-- Généré le :  jeu. 31 jan. 2019 à 13:23
 -- Version du serveur :  5.7.23
 -- Version de PHP :  5.6.38
 
@@ -30,10 +30,12 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `booksellers`;
 CREATE TABLE IF NOT EXISTS `booksellers` (
-  `id_bookseller` int(11) NOT NULL,
+  `id_bookseller` int(11) NOT NULL AUTO_INCREMENT,
   `name_bookseller` varchar(255) NOT NULL,
   `email_bookseller` varchar(255) NOT NULL,
-  `pass_bookseller` varchar(500) NOT NULL
+  `pass_bookseller` varchar(500) NOT NULL,
+  `guid_bookseller` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_bookseller`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -107,16 +109,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `lastname_user` varchar(255) NOT NULL,
   `guid_user` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id_user`, `type_user`, `email_user`, `adress_user`, `postal_user`, `pass_user`, `firstname_user`, `lastname_user`, `guid_user`) VALUES
-(9, 2, 'no@no.fr', 'no', '68000', '$2y$10$mH0bAGAQ1f2PliMcbgkn1OAXdrNwkRn7DlVTuknT86krCKijaaH8q', 'no', 'no', '594b5f92-382a-4c24-9d62-79b0c6a06f92'),
-(10, 2, 'lu@lu.fr', ' 15 rue', '30000', '$2y$10$nZ8.u4VJvk3WAqeVSOB4Q.DEolnJBmgXa9gw50Xr.LtqWPGHP823i', 'lu', 'lu', '9ef4c785-0ea1-463c-952f-65a6831c8dd2'),
-(11, 2, 'ru@ru.fr', 'ru', '90000', '$2y$10$ZoprN4NFtDP7h.VS8/HemO7foPzkLGzZKRzEaw7nhdvXerUsYdMj6', 'ru', 'ru', '65da86f4-6014-4e22-951b-edb01365f50a');
+(4, 2, 'ni@ni.fr', 'ni', 'ni', '$2y$10$OZfwK8COqggMkPlGKdjWvetL6McCBzvXfLIybRZGr.3ivT3h8HjbS', 'no', 'ni', '530550ae-1c08-41b0-9c27-ec0b53a74fe7'),
+(5, 2, 'no@no.fr', '8 rue de jour', '45000', '$2y$10$UH79tiYCLz7xjUJ4iiSalO62ILS59uyD1ycQPxRwsgnrvlmcmiyne', 'Michel', 'Grissin', '25d5ab65-d592-452e-b79c-365b8a2f86bc'),
+(6, 2, 'moi@moi.fr', '5 rue moi même', '75001', '$2y$10$hHMj1sZdbzPEFcxOu6mW0.Az7OVm3mKwA8TsdoIj8d4wSH0fSoAya', 'moi', 'moi', '203be8f1-d800-4895-83ee-a8abb70c11e7');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
